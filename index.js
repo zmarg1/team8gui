@@ -32,7 +32,7 @@ class App extends React.Component{
         else if (this.state.page === 'Patients') {
             return (
                 <div className="container">
-                        <h1 className="bg-info text-white text-center">PATIENT INFO PAGE RENDERED</h1>
+                        <h1 className="bg-info text-white text-center">Pateint Info</h1>
                         <div className="row text-center">
                             <div className="col-sm-12">
                             <button onClick={() => {this.setState({page:'Home'})}} className="btn btn-primary btn-lg m-1">Back</button>
@@ -44,7 +44,7 @@ class App extends React.Component{
         else if (this.state.page === 'Alarms'){
             return (
                 <div className="container">
-                    <h1 className="bg-info text-white text-center">ALARMS PAGE RENDERED</h1>
+                    <h1 className="bg-info text-white text-center">Alarms</h1>
                     <div className="row text-center">
                         <div className="col-sm-12">
                             <button onClick={() => {this.setState({page:'Home'})}} className="btn btn-primary btn-lg m-1">Back</button>
