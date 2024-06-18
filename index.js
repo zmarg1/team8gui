@@ -12,7 +12,7 @@ class App extends React.Component{
         if (this.state.page === 'Home') {
             return (
                 <div className="container">
-                    <h1 className="bg-info text-white text-center">HOME PAGE RENDERED</h1>
+                    <h1 className="bg-info text-white text-center">Patient Monitoring Device Main Menu</h1>
                     <div className="row">
                         <div className="col-sm-4 text-center">
                             <PowerButton 
