@@ -31,3 +31,19 @@ class PowerButton extends React.Component{
         
     };
 }
+
+function TimeComponent () {
+    const [currTime, setCurrTime] = React.useState(new Date());
+    React.useEffect(() => {
+        const intervalID = setInterval(() => setCurrTime(new Date()), 1000);
+        return () => {
+            clearInterval(intervalID);
+        };
+    }, []);
+    return (
+        
+        currTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+       
+    );
+}
+    
