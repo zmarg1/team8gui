@@ -44,14 +44,47 @@ class App extends React.Component{
                         </div>
                     </div>
                     <div className="row">
-                        
+                        <div className="col-sm-5">
+                            <div className="waveform-container"></div>
+                        </div>
+                        <div className="col-sm-1">
+                            <div className="side-container">
+                                <h2 className="text-black text-center">120 HR BPM</h2>
+                            </div>
+                        </div>
+                        <div className="col-sm-5">
+                            <div className="waveform-container"></div>
+                        </div>
+                        <div className="col-sm-1">
+                            <div className="side-container">
+                                <h2 className="text-black text-center">120 HR BPM</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-sm-5">
+                            <div className="waveform-container"></div>
+                        </div>
+                        <div className="col-sm-1">
+                            <div className="side-container">
+                                <h2 className="text-black text-center">120 HR BPM</h2>
+                            </div>
+                        </div>
+                        <div className="col-sm-5">
+                            <div className="waveform-container"></div>
+                        </div>
+                        <div className="col-sm-1">
+                            <div className="side-container">
+                                <h2 className="text-black text-center">120 HR BPM</h2>
+                            </div>
+                        </div>
                     </div>
                 </div>
             );
         }
         else if (this.state.page === 'Patients') {
             return (
-                <div className="container">
+                <div className="container-fluid">
                         <h1 className="bg-info text-white text-center">Pateint Info</h1>
                         <div className="row text-center">
                             <div className="col-sm-12">
@@ -63,7 +96,7 @@ class App extends React.Component{
         }
         else if (this.state.page === 'Alarms'){
             return (
-                <div className="container">
+                <div className="container-fluid">
                     <h1 className="bg-info text-white text-center">Alarms</h1>
                     <div className="row text-center">
                         <div className="col-sm-12">
