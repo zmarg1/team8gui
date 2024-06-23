@@ -11,7 +11,7 @@ class App extends React.Component{
     render(){
         if (this.state.page === 'Home') {
             return (
-                <div className="container-fluid bg-dark">
+                <div className="container bg-dark">
                     <div className = "row bg-primary">
                         <div className = "col-sm-10"></div>
                         <div className = "col-sm-2 text-end">
@@ -22,14 +22,14 @@ class App extends React.Component{
                             </span>
                         </div>
                     </div>
-                    <div className="row m-1">
+                    <div className="row mt-1">
                         <div className="col-sm-1 text-center">
                             <PowerButton 
                                     power={this.state.power}
                                     onPowerChange={this.handlePowerChange}
                             /> 
                         </div>
-                        <div className="col-sm-9 text-center">
+                        <div className="col-sm-8 text-center">
                             <button onClick={() => {this.setState({page:'Patients'})}} className="btn btn-primary btn-md m-1">Patients</button>
                             <button onClick={() => {this.setState({page:'Alarms'})}} className="btn btn-primary btn-md m-1">Alarms</button>
                             <button onClick={() => {this.setState({page:'#'})}} className="btn btn-primary btn-md m-1">Data I/O</button>
@@ -39,45 +39,55 @@ class App extends React.Component{
                             <button onClick={() => {this.setState({page:'#'})}} className="btn btn-primary btn-md m-1">Events</button>
                             <button onClick={() => {this.setState({page:'#'})}} className="btn btn-primary btn-md m-1">Full Menu</button>
                         </div>
-                        <div className="col-sm-2 text-center">  
-                            <h3 className="bg-info text-white text-center p-2">Temp: 98.6</h3>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-sm-5">
-                            <div className="waveform-container"></div>
-                        </div>
-                        <div className="col-sm-1">
-                            <div className="side-container">
-                                <h2 className="text-black text-center">120 HR BPM</h2>
-                            </div>
-                        </div>
-                        <div className="col-sm-5">
-                            <div className="waveform-container"></div>
-                        </div>
-                        <div className="col-sm-1">
-                            <div className="side-container">
-                                <h2 className="text-black text-center">120 HR BPM</h2>
+                        <div className="col-sm-3">
+                            <div className="temp-container border border-white">
+                                <h2 className="text-white text-center">Temp: 98.6</h2>
                             </div>
                         </div>
                     </div>
+                    <div className="row my-1">
+                        <div className="col-sm-9">
+                            <div className="waveform-container border border-success"></div>
+                        </div>
+                        <div className="col-sm-3">
+                            <div className="side-container border border-success">
+                                <h2 className="text-white text-center">120 HR BPM</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row my-1">
+                        <div className="col-sm-9">
+                            <div className="waveform-container border border-success"></div>
+                        </div>
+                        <div className="col-sm-3">
+                            <div className="side-container border border-success ">
+                                <h2 className="text-white text-center">120 HR BPM</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row my-1">
+                        <div className="col-sm-9">
+                            <div className="waveform-container border border-primary"></div>
+
+                        </div>
+                        <div className="col-sm-3">
+                            <div className="side-container border border-primary">
+                                <h2 className="text-white text-center">120 HR BPM</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row my-1">
+                        <div className="col-sm-9">
+                            <div className="waveform-container border border-warning"></div>
+
+                        </div>
+                        <div className="col-sm-3">
+                                <div className="side-container border border-warning">
+                                    <h2 className="text-white text-center">120 HR BPM</h2>
+                                </div>
+                        </div>
+                    </div>
                     <div className="row">
-                        <div className="col-sm-5">
-                            <div className="waveform-container"></div>
-                        </div>
-                        <div className="col-sm-1">
-                            <div className="side-container">
-                                <h2 className="text-black text-center">120 HR BPM</h2>
-                            </div>
-                        </div>
-                        <div className="col-sm-5">
-                            <div className="waveform-container"></div>
-                        </div>
-                        <div className="col-sm-1">
-                            <div className="side-container">
-                                <h2 className="text-black text-center">120 HR BPM</h2>
-                            </div>
-                        </div>
                     </div>
                 </div>
             );
