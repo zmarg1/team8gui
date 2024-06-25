@@ -30,14 +30,14 @@ class App extends React.Component{
                             /> 
                         </div>
                         <div className="col-sm-8 text-center">
-                            <button onClick={() => {this.setState({page:'Patients'})}} className="btn btn-primary btn-md m-1">Patients</button>
-                            <button onClick={() => {this.setState({page:'Alarms'})}} className="btn btn-primary btn-md m-1">Alarms</button>
-                            <button onClick={() => {this.setState({page:'#'})}} className="btn btn-primary btn-md m-1">Data I/O</button>
-                            <button onClick={() => {this.setState({page:'#'})}} className="btn btn-primary btn-md m-1">Display</button>
-                            <button onClick={() => {this.setState({page:'#'})}} className="btn btn-primary btn-md m-1">Camera</button>
-                            <button onClick={() => {this.setState({page:'#'})}} className="btn btn-primary btn-md m-1">Waveform</button>
-                            <button onClick={() => {this.setState({page:'#'})}} className="btn btn-primary btn-md m-1">Events</button>
-                            <button onClick={() => {this.setState({page:'#'})}} className="btn btn-primary btn-md m-1">Full Menu</button>
+                            <button onClick={() => {this.setState({page:'Patients'})}} className="btn btn-primary btn-lg m-1">Patients</button>
+                            <button onClick={() => {this.setState({page:'Alarms'})}} className="btn btn-primary btn-lg m-1">Alarms</button>
+                            <button onClick={() => {this.setState({page:'#'})}} className="btn btn-primary btn-lg m-1">Data I/O</button>
+                            <button onClick={() => {this.setState({page:'#'})}} className="btn btn-primary btn-lg m-1">Display</button>
+                            <button onClick={() => {this.setState({page:'#'})}} className="btn btn-primary btn-lg m-1">Camera</button>
+                            <button onClick={() => {this.setState({page:'#'})}} className="btn btn-primary btn-lg m-1">Waveform</button>
+                            <button onClick={() => {this.setState({page:'#'})}} className="btn btn-primary btn-lg m-1">Events</button>
+                            <button onClick={() => {this.setState({page:'#'})}} className="btn btn-primary btn-lg m-1">Full Menu</button>
                         </div>
                         <div className="col-sm-3">
                             <div className="temp-container border border-white">
@@ -87,7 +87,33 @@ class App extends React.Component{
                                 </div>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row mt-1">
+                        <div className="col-sm-3 text-start text-white">
+                            <div className="patient-container border border-white">
+                                <h3 className="text-white text-start">Patient: -</h3>
+                                <h3 className="text-white text-start">-</h3>
+                            </div>
+                        </div>
+                        <div className="col-sm-4 text-center">
+                            <button onClick={() => {this.setState({page:'Patients'})}} className="btn btn-success btn-lg m-1"><i class="fa fa-phone"></i></button>
+                            <button onClick={() => {this.setState({page:'Alarms'})}} className="btn btn-danger btn-lg m-1"><i class="fa fa-phone"></i></button>
+                            <button onClick={() => {this.setState({page:'#'})}} className="btn btn-primary btn-lg m-1"><i class="fa fa-bell"></i></button>
+                            <button onClick={() => {this.setState({page:'#'})}} className="btn btn-primary btn-lg m-1"><i class="fa fa-bell-slash-o"></i></button>
+                            <button onClick={() => {this.setState({page:'#'})}} className="btn btn-primary btn-lg m-1"><i class="fa fa-sun-o"></i></button>
+                            
+                        </div>
+                        <div className="col-sm-5 d-flex justify-content-between">
+                            <div className="pressure-container border border-white">
+                                <h2 className="text-white text-center">S: 110</h2>
+                            </div>
+                            <div className="pressure-container border border-white">
+                                <h2 className="text-white text-center">M: 100</h2>
+                            </div>
+                            <div className="pressure-container border border-white">
+                                <h2 className="text-white text-center">D: 70</h2>
+                            </div>
+                            <button onClick={() => {this.setState({page:'#'})}} className="btn btn-warning btn-lg m-1"><i class="fa fa-play"></i></button>
+                        </div>
                     </div>
                 </div>
             );

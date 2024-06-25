@@ -18,3 +18,17 @@
     height: 125px;
     border-radius:5px;
 }
+
+.pressure-container{
+    background-color: black;
+    width: 100%;
+    height: 50px;
+    border-radius:5px;
+}
+
+.patient-container{
+    background-color: black;
+    width: 100%;
+    height: auto;
+    border-radius:5px;
+}
