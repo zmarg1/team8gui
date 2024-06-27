@@ -13,12 +13,15 @@ class App extends React.Component{
             return (
                 <div className="container bg-dark">
                     <div className = "row bg-primary">
-                        <div className = "col-sm-10"></div>
-                        <div className = "col-sm-2 text-end">
+                        <div className = "col-sm-9"></div>
+                        <div className = "col-sm-3 text-end align-items">
+                            <i className="fa fa-signal icon-bar"></i>
+                            <i className="fa fa-plug icon-bar"></i>
                             <TimeComponent/>
                             <img src="img/bluetooth2.png" alt ="bluetooth logo" width="20px" height ="auto" />
                             <span>
-                                95%  
+                                95%
+                                  
                             </span>
                         </div>
                     </div>
@@ -50,8 +53,9 @@ class App extends React.Component{
                             <div className="waveform-container border border-success"></div>
                         </div>
                         <div className="col-sm-3">
-                            <div className="side-container border border-success">
-                                <h2 className="text-white text-center">120 HR BPM</h2>
+                            <div className="side-container border border-success text-white text-center">
+                                <h1>120</h1>
+                                <h2>HR BPM</h2>
                             </div>
                         </div>
                     </div>
@@ -60,8 +64,12 @@ class App extends React.Component{
                             <div className="waveform-container border border-success"></div>
                         </div>
                         <div className="col-sm-3">
-                            <div className="side-container border border-success ">
-                                <h2 className="text-white text-center">120 HR BPM</h2>
+                            <div className="side-container border border-success text-white text-center">
+                                <h2>10</h2>
+                                <h2>Lead</h2>
+                                <span>
+                                    <i className="fa fa-heartbeat fa-5x"></i>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -71,8 +79,9 @@ class App extends React.Component{
 
                         </div>
                         <div className="col-sm-3">
-                            <div className="side-container border border-primary">
-                                <h2 className="text-white text-center">120 HR BPM</h2>
+                            <div className="side-container border border-primary text-white text-center">
+                                <h1>99</h1> 
+                                <h2>S<sub>p</sub>O<sub>2</sub> %</h2>
                             </div>
                         </div>
                     </div>
@@ -82,8 +91,11 @@ class App extends React.Component{
 
                         </div>
                         <div className="col-sm-3">
-                                <div className="side-container border border-warning">
-                                    <h2 className="text-white text-center">120 HR BPM</h2>
+                                <div className="side-container border border-warning text-white">
+                                    <h2>40</h2>
+                                    <h5>Resp. rpm ETCO<sub>2</sub></h5>
+                                    <h3>mmHg</h3>
+                                    <h2>42</h2>
                                 </div>
                         </div>
                     </div>

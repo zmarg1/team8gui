@@ -10,6 +10,10 @@
     width: 100%;
     height: 175px;
     border-radius:5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* vertically center items */
+    align-items: center; /* horizontally center items */
 }
 
 .temp-container{
@@ -17,6 +21,10 @@
     width: 100%;
     height: 125px;
     border-radius:5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* vertically center items */
+    align-items: center; /* horizontally center items */
 }
 
 .pressure-container{
@@ -31,4 +39,11 @@
     width: 100%;
     height: auto;
     border-radius:5px;
+}
+
+.icon-bar {
+    font-size: 1em; 
+    vertical-align: middle;
+    margin-right: 5px;
+    color: #53c242 
 }
