@@ -33,7 +33,7 @@ class App extends React.Component{
                             /> 
                         </div>
                         <div className="col-sm-8 text-center">
-                            <button onClick={() => {this.setState({page:'Patients'})}} className="btn btn-primary btn-lg m-1">Patients</button>
+                            <button onClick={() => {this.setState({page:'Patients'})}} className="btn btn-primary btn-lg m-1"><i class="fa fa-users"></i></button>
                             <button onClick={() => {this.setState({page:'Alarms'})}} className="btn btn-primary btn-lg m-1">Alarms</button>
                             <button onClick={() => {this.setState({page:'#'})}} className="btn btn-primary btn-lg m-1">Data I/O</button>
                             <button onClick={() => {this.setState({page:'#'})}} className="btn btn-primary btn-lg m-1">Display</button>
