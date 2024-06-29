@@ -18,7 +18,7 @@ class PowerButton extends React.Component{
             return(
                 <div className="text-center">
                     <button type="button" onClick={this.toggle} className="btn btn-danger btn-lg m-1">
-                        <i class="fa fa-power-off"></i>
+                        <i className="fa fa-power-off"></i>
                     </button>
                 </div>
             );
@@ -27,7 +27,7 @@ class PowerButton extends React.Component{
             return(
                 <div className="text-center">
                     <button type="button" onClick={this.toggle} className="btn btn-success btn-lg m-1">
-                        <i class="fa fa-power-off"></i>
+                        <i className="fa fa-power-off"></i>
                     </button>
                 </div>
             );
