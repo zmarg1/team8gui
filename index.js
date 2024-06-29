@@ -230,6 +230,7 @@ class App extends React.Component {
     const filteredPatients = this.state.patientDB.filter(
       (patient) => patient.id !== 0
     );
+    const renderGraph =this.state.selectedPatient.id !== 0;
 
     if (this.state.page === "Home") {
       return (
@@ -332,7 +333,7 @@ class App extends React.Component {
           <div className="row my-1">
             <div className="col-sm-9">
               <div className="waveform-container border border-success">
-                <ECGGraph id="ecg1" strokeColor="lime" amplitude = {30} shift = {0.05}/>
+                {renderGraph && (<ECGGraph id="ecg1" strokeColor="lime" amplitude = {30} shift = {0.05}/>)}
               </div>
             </div>
             <div className="col-sm-3">
@@ -345,7 +346,7 @@ class App extends React.Component {
           <div className="row my-1">
             <div className="col-sm-9">
               <div className="waveform-container border border-success">
-                <ECGGraph id="ecg2" strokeColor="lime" amplitude = {30} shift = {0.059}/>
+              {renderGraph && (<ECGGraph id="ecg2" strokeColor="lime" amplitude = {30} shift = {0.059}/>)}
               </div>
             </div>
             <div className="col-sm-3">
@@ -360,7 +361,7 @@ class App extends React.Component {
           <div className="row my-1">
             <div className="col-sm-9">
               <div className="waveform-container border border-primary">
-                <ECGGraph id="spo2" strokeColor="blue" amplitude = {50} shift = {0.06}/>
+              {renderGraph && (<ECGGraph id="spo2" strokeColor="blue" amplitude = {50} shift = {0.06}/>)}
               </div>
             </div>
             <div className="col-sm-3">
@@ -375,7 +376,7 @@ class App extends React.Component {
           <div className="row my-1">
             <div className="col-sm-9">
               <div className="waveform-container border border-warning">
-                <ECGGraph id="pleth" strokeColor="orange" amplitude = {60} shift = {0.02}/>
+              {renderGraph && (<ECGGraph id="pleth" strokeColor="orange" amplitude = {60} shift = {0.02}/>)}
               </div>
             </div>
             <div className="col-sm-3">
