@@ -331,7 +331,9 @@ class App extends React.Component {
           </div>
           <div className="row my-1">
             <div className="col-sm-9">
-              <div className="waveform-container border border-success"></div>
+              <div className="waveform-container border border-success">
+                <ECGGraph id="ecg1" strokeColor="lime" amplitude = {30} shift = {0.05}/>
+              </div>
             </div>
             <div className="col-sm-3">
               <div className="side-container border border-success text-white text-center">
@@ -342,7 +344,9 @@ class App extends React.Component {
           </div>
           <div className="row my-1">
             <div className="col-sm-9">
-              <div className="waveform-container border border-success"></div>
+              <div className="waveform-container border border-success">
+                <ECGGraph id="ecg2" strokeColor="lime" amplitude = {30} shift = {0.059}/>
+              </div>
             </div>
             <div className="col-sm-3">
               <div className="side-container border border-success text-white text-center">
@@ -355,7 +359,9 @@ class App extends React.Component {
           </div>
           <div className="row my-1">
             <div className="col-sm-9">
-              <div className="waveform-container border border-primary"></div>
+              <div className="waveform-container border border-primary">
+                <ECGGraph id="spo2" strokeColor="blue" amplitude = {50} shift = {0.06}/>
+              </div>
             </div>
             <div className="col-sm-3">
               <div className="side-container border border-primary text-white text-center">
@@ -368,7 +374,9 @@ class App extends React.Component {
           </div>
           <div className="row my-1">
             <div className="col-sm-9">
-              <div className="waveform-container border border-warning"></div>
+              <div className="waveform-container border border-warning">
+                <ECGGraph id="pleth" strokeColor="orange" amplitude = {60} shift = {0.02}/>
+              </div>
             </div>
             <div className="col-sm-3">
               <div className="side-container border border-warning text-white">
