@@ -64,47 +64,55 @@ class ECGGraph extends React.Component {
         this.canvas.width = this.width;
         this.canvas.height = this.height;
         this.offset = 0;
-
-        this.drawGraph();
+        this.currentAmplitude = this.getRandomAmplitude();
+        this.drawGraph(this.currentAmplitude);
         this.animate();
     }
 
-    
+    getRandomAmplitude = () => {
+        const randomNumber = Math.floor(Math.random() * (100 - 50 + 1)) + 50;
+        return this.props.amplitude * (randomNumber/100);
+    };
 
     animate = () => {
         if (!this.ctx) return;
 
-        this.drawGraph();
+        this.drawGraph(this.currentAmplitude);
 
         let step = 20;
         let x = this.offset;
         let y = this.height / 2;
         
         this.ctx.fillStyle = 'black';
-        this.ctx.fillRect(x-5, y-50, step, y*2); 
+        this.ctx.fillRect(x-5, y-100, step, y*2); 
         
-        this.offset += 3;
+        this.offset += 4;
         if (this.offset >= this.width) {
             this.offset = 0;
+            this.currentAmplitude = this.getRandomAmplitude();
         }
 
         requestAnimationFrame(this.animate);
     };
 
-    drawGraph = () => {
+    drawGraph = (amplitude) => {
         if (!this.ctx) return;
-        this.ctx.beginPath();
+        
+        // Clear the canvas
+        this.ctx.clearRect(0, 0, this.width, this.height);
 
         this.ctx.beginPath();
+
         this.ctx.moveTo(0, this.height / 2);
 
-        const amplitude = this.props.amplitude || 50;
+        
         const shift = this.props.shift || 0
-
+        
         for (let x = 0; x < this.width; x++) {
             let y = this.height / 2 + amplitude * Math.sin(x * (shift)); 
             this.ctx.lineTo(x, y);
         }
+        
         this.ctx.strokeStyle = this.props.strokeColor || 'lime';
         this.ctx.lineWidth = 2;
         this.ctx.stroke();
