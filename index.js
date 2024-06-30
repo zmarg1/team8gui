@@ -268,57 +268,64 @@ class App extends React.Component {
               </button>
               <button
                 onClick={() => {
-                  this.setState({ page: "#" });
+                  
                 }}
                 className="btn btn-primary btn-lg m-1"
+                style={{ outline: 'none', boxShadow: 'none' }}
               >
                 Alarms
               </button>
               <button
                 onClick={() => {
-                  this.setState({ page: "#" });
+                  
                 }}
                 className="btn btn-primary btn-lg m-1"
+                style={{ outline: 'none', boxShadow: 'none' }}
               >
                 Data I/O
               </button>
               <button
                 onClick={() => {
-                  this.setState({ page: "#" });
+                  
                 }}
                 className="btn btn-primary btn-lg m-1"
+                style={{ outline: 'none', boxShadow: 'none' }}
               >
                 Display
               </button>
               <button
                 onClick={() => {
-                  this.setState({ page: "#" });
+                  
                 }}
                 className="btn btn-primary btn-lg m-1"
+                style={{ outline: 'none', boxShadow: 'none' }}
               >
                 Camera
               </button>
               <button
                 onClick={() => {
-                  this.setState({ page: "#" });
+
                 }}
                 className="btn btn-primary btn-lg m-1"
+                style={{ outline: 'none', boxShadow: 'none' }}
               >
                 Waveform
               </button>
               <button
                 onClick={() => {
-                  this.setState({ page: "#" });
+                  
                 }}
                 className="btn btn-primary btn-lg m-1"
+                style={{ outline: 'none', boxShadow: 'none' }}
               >
                 Events
               </button>
               <button
                 onClick={() => {
-                  this.setState({ page: "#" });
+                  
                 }}
                 className="btn btn-primary btn-lg m-1"
+                style={{ outline: 'none', boxShadow: 'none' }}
               >
                 Full Menu
               </button>
@@ -435,41 +442,46 @@ class App extends React.Component {
             <div className="col-sm-4 text-center">
               <button
                 onClick={() => {
-                  this.setState({ page: "#" });
+                  
                 }}
                 className="btn btn-success btn-lg m-1"
+                style={{ outline: 'none', boxShadow: 'none' }}
               >
                 <i className="fa fa-phone"></i>
               </button>
               <button
                 onClick={() => {
-                  this.setState({ page: "#" });
+                  
                 }}
                 className="btn btn-danger btn-lg m-1"
+                style={{ outline: 'none', boxShadow: 'none' }}
               >
                 <i className="fa fa-phone"></i>
               </button>
               <button
                 onClick={() => {
-                  this.setState({ page: "#" });
+                  
                 }}
                 className="btn btn-primary btn-lg m-1"
+                style={{ outline: 'none', boxShadow: 'none' }}
               >
                 <i className="fa fa-bell"></i>
               </button>
               <button
                 onClick={() => {
-                  this.setState({ page: "#" });
+                  
                 }}
                 className="btn btn-primary btn-lg m-1"
+                style={{ outline: 'none', boxShadow: 'none' }}
               >
                 <i className="fa fa-bell-slash-o"></i>
               </button>
               <button
                 onClick={() => {
-                  this.setState({ page: "#" });
+                  
                 }}
                 className="btn btn-primary btn-lg m-1"
+                style={{ outline: 'none', boxShadow: 'none' }}
               >
                 <i className="fa fa-sun-o"></i>
               </button>
@@ -492,9 +504,10 @@ class App extends React.Component {
               </div>
               <button
                 onClick={() => {
-                  this.setState({ page: "#" });
+
                 }}
                 className="btn btn-warning btn-lg m-1"
+                style={{ outline: 'none', boxShadow: 'none' }}
               >
                 <i className="fa fa-play"></i>
               </button>
