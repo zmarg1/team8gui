@@ -333,7 +333,7 @@ class App extends React.Component {
           <div className="row my-1">
             <div className="col-sm-9">
               <div className="waveform-container border border-success">
-                <h4 className="text-success ml-1">ECG II</h4>
+                <div className="waveform-text text-success">ECG II</div>
                 {renderGraph && (
                   <ECGGraph
                     id="ecg2"
@@ -354,15 +354,15 @@ class App extends React.Component {
           <div className="row my-1">
             <div className="col-sm-9">
               <div className="waveform-container border border-success">
-                <h4 className="text-success ml-1">ECG I</h4>
+                <div className="waveform-text text-success">ECG I</div>
                 {renderGraph && (
-                  <ECGGraph
-                    id="ecg1"
-                    strokeColor="lime"
-                    amplitude={30}
-                    shift={0.059}
-                  />
-                )}
+                    <ECGGraph
+                      id="ecg1"
+                      strokeColor="lime"
+                      amplitude={30}
+                      shift={0.059}
+                    />
+                  )}
               </div>
             </div>
             <div className="col-sm-3">
@@ -377,7 +377,7 @@ class App extends React.Component {
           <div className="row my-1">
             <div className="col-sm-9">
               <div className="waveform-container border border-primary">
-                <h4 className="text-primary ml-1">PLETH</h4>
+                <div className="waveform-text text-primary">PLETH</div>
                 {renderGraph && (
                   <ECGGraph
                     id="pleth"
@@ -400,7 +400,7 @@ class App extends React.Component {
           <div className="row my-1">
             <div className="col-sm-9">
               <div className="waveform-container border border-warning">
-                <h4 className="text-warning ml-1">CAPNO</h4>
+                <div className="waveform-text text-warning">CAPNO</div>
                 {renderGraph && (
                   <ECGGraph
                     id="capno"

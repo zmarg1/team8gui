@@ -1,4 +1,5 @@
 .waveform-container{
+    position: relative; 
     background-color: black;
     width: 100%;
     height: 175px;
@@ -6,8 +7,17 @@
 }
 
 .waveform-text{
+    position: absolute;
+    font-weight:bold;
     color:white;
+    top: 5px;
+    left: 5px; 
     font-size: 18px;
+}
+
+.waveform-canvas {
+    width: 100%;
+    height: 100%;
 }
 
 .side-container{

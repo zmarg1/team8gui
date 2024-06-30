@@ -111,7 +111,7 @@ class ECGGraph extends React.Component {
     };
 
     render() {
-        return <canvas id={this.props.id} className="waveform-container"></canvas>;
+        return <canvas id={this.props.id} className="waveform-canvas"></canvas>;
     }
 }
     
