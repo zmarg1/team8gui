@@ -5,6 +5,11 @@
     border-radius:5px;
 }
 
+.waveform-text{
+    color:white;
+    font-size: 18px;
+}
+
 .side-container{
     background-color: black;
     width: 100%;

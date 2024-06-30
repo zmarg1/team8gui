@@ -96,7 +96,7 @@ class App extends React.Component {
     };
 
     this.state.selectedPatient = this.state.patientDB.find(
-        (patient) => patient.id === 0
+      (patient) => patient.id === 0
     );
   }
 
@@ -114,46 +114,46 @@ class App extends React.Component {
 
     // Create a new patient object
     const patient = {
-        id: newPatient.id,
-        name: newPatient.name,
-        ageType: newPatient.ageType,
-        age: newPatient.age,
-        prescribedDrugs: newPatient.prescribedDrugs,
-        incidentInfo: newPatient.incidentInfo,
-        temperature: newPatient.temperature,
-        heartRate: newPatient.heartRate,
-        spo2: newPatient.spo2,
-        respiratoryRPM: newPatient.respiratoryRPM,
-        endTidal: newPatient.endTidal,
-        bloodPressureSystolic: newPatient.bloodPressureSystolic,
-        bloodPressureDiastolic: newPatient.bloodPressureDiastolic,
-        bloodPressureMean: newPatient.bloodPressureMean,
-        heartLead: newPatient.heartLead,
+      id: newPatient.id,
+      name: newPatient.name,
+      ageType: newPatient.ageType,
+      age: newPatient.age,
+      prescribedDrugs: newPatient.prescribedDrugs,
+      incidentInfo: newPatient.incidentInfo,
+      temperature: newPatient.temperature,
+      heartRate: newPatient.heartRate,
+      spo2: newPatient.spo2,
+      respiratoryRPM: newPatient.respiratoryRPM,
+      endTidal: newPatient.endTidal,
+      bloodPressureSystolic: newPatient.bloodPressureSystolic,
+      bloodPressureDiastolic: newPatient.bloodPressureDiastolic,
+      bloodPressureMean: newPatient.bloodPressureMean,
+      heartLead: newPatient.heartLead,
     };
 
     // Update db and save to localStorage
     this.setState(
-        {
-          patientDB: [...patientDB, patient],
-          newPatient: {
-            id: "",
-            name: "",
-            ageType: "",
-            age: "",
-            prescribedDrugs: "",
-            incidentInfo: "",
-            temperature: "",
-            heartRate: "",
-            spo2: "",
-            respiratoryRPM: "",
-            endTidal: "",
-            bloodPressureSystolic: "",
-            bloodPressureDiastolic: "",
-            bloodPressureMean: "",
-            heartLead: "",
-          },
-          message: "Patient added successfully.",
+      {
+        patientDB: [...patientDB, patient],
+        newPatient: {
+          id: "",
+          name: "",
+          ageType: "",
+          age: "",
+          prescribedDrugs: "",
+          incidentInfo: "",
+          temperature: "",
+          heartRate: "",
+          spo2: "",
+          respiratoryRPM: "",
+          endTidal: "",
+          bloodPressureSystolic: "",
+          bloodPressureDiastolic: "",
+          bloodPressureMean: "",
+          heartLead: "",
         },
+        message: "Patient added successfully.",
+      },
       () => {
         const JSONObject = JSON.stringify(this.state.db);
         localStorage.setItem("localDB", JSONObject);
@@ -164,13 +164,13 @@ class App extends React.Component {
 
   handleChange = (e) => {
     const { name, value } = e.target;
-    this.setState(prevState => ({
-        newPatient: {
-            ...prevState.newPatient,
-            [name]: value
-        }
+    this.setState((prevState) => ({
+      newPatient: {
+        ...prevState.newPatient,
+        [name]: value,
+      },
     }));
-    };
+  };
 
   handlePowerChange = (power) => {
     this.setState({ power: power });
@@ -230,7 +230,7 @@ class App extends React.Component {
     const filteredPatients = this.state.patientDB.filter(
       (patient) => patient.id !== 0
     );
-    const renderGraph =this.state.selectedPatient.id !== 0;
+    const renderGraph = this.state.selectedPatient.id !== 0;
 
     if (this.state.page === "Home") {
       return (
@@ -268,7 +268,7 @@ class App extends React.Component {
               </button>
               <button
                 onClick={() => {
-                  this.setState({ page: "Alarms" });
+                  this.setState({ page: "#" });
                 }}
                 className="btn btn-primary btn-lg m-1"
               >
@@ -333,7 +333,15 @@ class App extends React.Component {
           <div className="row my-1">
             <div className="col-sm-9">
               <div className="waveform-container border border-success">
-                {renderGraph && (<ECGGraph id="ecg1" strokeColor="lime" amplitude = {30} shift = {0.05}/>)}
+                <h4 className="text-success ml-1">ECG II</h4>
+                {renderGraph && (
+                  <ECGGraph
+                    id="ecg2"
+                    strokeColor="lime"
+                    amplitude={30}
+                    shift={0.05}
+                  />
+                )}
               </div>
             </div>
             <div className="col-sm-3">
@@ -346,7 +354,15 @@ class App extends React.Component {
           <div className="row my-1">
             <div className="col-sm-9">
               <div className="waveform-container border border-success">
-              {renderGraph && (<ECGGraph id="ecg2" strokeColor="lime" amplitude = {30} shift = {0.059}/>)}
+                <h4 className="text-success ml-1">ECG I</h4>
+                {renderGraph && (
+                  <ECGGraph
+                    id="ecg1"
+                    strokeColor="lime"
+                    amplitude={30}
+                    shift={0.059}
+                  />
+                )}
               </div>
             </div>
             <div className="col-sm-3">
@@ -361,7 +377,15 @@ class App extends React.Component {
           <div className="row my-1">
             <div className="col-sm-9">
               <div className="waveform-container border border-primary">
-              {renderGraph && (<ECGGraph id="spo2" strokeColor="blue" amplitude = {50} shift = {0.06}/>)}
+                <h4 className="text-primary ml-1">PLETH</h4>
+                {renderGraph && (
+                  <ECGGraph
+                    id="pleth"
+                    strokeColor="blue"
+                    amplitude={50}
+                    shift={0.06}
+                  />
+                )}
               </div>
             </div>
             <div className="col-sm-3">
@@ -376,7 +400,15 @@ class App extends React.Component {
           <div className="row my-1">
             <div className="col-sm-9">
               <div className="waveform-container border border-warning">
-              {renderGraph && (<ECGGraph id="pleth" strokeColor="orange" amplitude = {60} shift = {0.02}/>)}
+                <h4 className="text-warning ml-1">CAPNO</h4>
+                {renderGraph && (
+                  <ECGGraph
+                    id="capno"
+                    strokeColor="orange"
+                    amplitude={60}
+                    shift={0.02}
+                  />
+                )}
               </div>
             </div>
             <div className="col-sm-3">
@@ -403,7 +435,7 @@ class App extends React.Component {
             <div className="col-sm-4 text-center">
               <button
                 onClick={() => {
-                  this.setState({ page: "Patients" });
+                  this.setState({ page: "#" });
                 }}
                 className="btn btn-success btn-lg m-1"
               >
