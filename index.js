@@ -174,6 +174,9 @@ class App extends React.Component {
 
   handlePowerChange = (power) => {
     this.setState({ power: power });
+    this.state.selectedPatient = this.state.patientDB.find(
+      (patient) => patient.id === 0
+    );
   };
 
   handlePatientSelect = (id) => {
@@ -230,26 +233,28 @@ class App extends React.Component {
     const filteredPatients = this.state.patientDB.filter(
       (patient) => patient.id !== 0
     );
-    const renderGraph = this.state.selectedPatient.id !== 0;
+    const isPatientSelected = this.state.selectedPatient.id !== 0;
+    const isPowerOn = this.state.power === 1;
 
     if (this.state.page === "Home") {
       return (
         <div className="container bg-dark">
           <div className="row bg-primary">
             <div className="col-sm-9"></div>
-            <div className="col-sm-3 text-end align-items">
-              <i className="fa fa-signal icon-bar"></i>
-              <i className="fa fa-plug icon-bar"></i>
-              <TimeComponent />
-              <img
-                src="img/bluetooth2.png"
-                alt="bluetooth logo"
-                width="20px"
-                height="auto"
-              />
-              <span>95%</span>
+              <div className="col-sm-3 d-flex justify-content-end text-end align-items-center">
+                {isPowerOn && (<span >95%</span>)}
+                {isPowerOn && (<i className="fa fa-signal icon-bar ml-2"></i>)}
+                {isPowerOn && (<i className="fa fa-plug icon-bar"></i>)}
+                {isPowerOn && (<img
+                  src="img/bluetooth2.png"
+                  alt="bluetooth logo"
+                  width="20px"
+                  height="auto"
+                />)}
+                
+                <TimeComponent />
+              </div>
             </div>
-          </div>
           <div className="row mt-1">
             <div className="col-sm-1 text-center">
               <PowerButton
@@ -260,23 +265,21 @@ class App extends React.Component {
             <div className="col-sm-8 text-center">
               <button
                 onClick={() => {
-                  this.setState({ page: "Patients" });
+                  isPowerOn && this.setState({ page: "Patients" });
                 }}
                 className="btn btn-primary btn-lg m-1"
               >
                 <i className="fa fa-users"></i>
               </button>
               <button
-                onClick={() => {
-                  this.setState({ page: "#" });
-                }}
+                
                 className="btn btn-primary btn-lg m-1"
               >
                 Alarms
               </button>
               <button
                 onClick={() => {
-                  this.setState({ page: "#" });
+                  this.setState({ page: "Home" });
                 }}
                 className="btn btn-primary btn-lg m-1"
               >
@@ -325,16 +328,16 @@ class App extends React.Component {
             </div>
             <div className="col-sm-3">
               <div className="temp-container border border-white text-white text-center">
-                <h2 className="">Temp:</h2>
-                <h2>{this.state.selectedPatient.temperature} &#8457;</h2>
+                {isPowerOn && (<h2 className="">Temp:</h2>)}
+                {isPowerOn && (<h2>{this.state.selectedPatient.temperature} &#8457;</h2>)}
               </div>
             </div>
           </div>
           <div className="row my-1">
             <div className="col-sm-9">
               <div className="waveform-container border border-success">
-                <div className="waveform-text text-success">ECG II</div>
-                {renderGraph && (
+                {isPowerOn && (<div className="waveform-text text-success">ECG II</div>)}
+                {isPowerOn && isPatientSelected && (
                   <ECGGraph
                     id="ecg2"
                     strokeColor="lime"
@@ -346,16 +349,16 @@ class App extends React.Component {
             </div>
             <div className="col-sm-3">
               <div className="side-container border border-success text-white text-center">
-                <h1>{this.state.selectedPatient.heartRate}</h1>
-                <h2>HR BPM</h2>
+                {isPowerOn && (<h1>{this.state.selectedPatient.heartRate}</h1>)}
+                {isPowerOn && (<h2>HR BPM</h2>)}
               </div>
             </div>
           </div>
           <div className="row my-1">
             <div className="col-sm-9">
               <div className="waveform-container border border-success">
-                <div className="waveform-text text-success">ECG I</div>
-                {renderGraph && (
+                {isPowerOn && (<div className="waveform-text text-success">ECG I</div>)}
+                {isPowerOn && isPatientSelected && (
                     <ECGGraph
                       id="ecg1"
                       strokeColor="lime"
@@ -367,9 +370,9 @@ class App extends React.Component {
             </div>
             <div className="col-sm-3">
               <div className="side-container border border-success text-white text-center">
-                <h1>{this.state.selectedPatient.heartLead}</h1>
+                {isPowerOn && (<h1>{this.state.selectedPatient.heartLead}</h1>)}
                 <span>
-                  <i className="fa fa-heartbeat fa-5x text-danger"></i>
+                  {isPowerOn && (<i className="fa fa-heartbeat fa-5x text-danger"></i>)}
                 </span>
               </div>
             </div>
@@ -377,8 +380,8 @@ class App extends React.Component {
           <div className="row my-1">
             <div className="col-sm-9">
               <div className="waveform-container border border-primary">
-                <div className="waveform-text text-primary">PLETH</div>
-                {renderGraph && (
+                {isPowerOn && (<div className="waveform-text text-primary">PLETH</div>)}
+                {isPowerOn && isPatientSelected && (
                   <ECGGraph
                     id="pleth"
                     strokeColor="blue"
@@ -390,18 +393,18 @@ class App extends React.Component {
             </div>
             <div className="col-sm-3">
               <div className="side-container border border-primary text-white text-center">
-                <h1>{this.state.selectedPatient.spo2}</h1>
-                <h2>
+                {isPowerOn && (<h1>{this.state.selectedPatient.spo2}</h1>)}
+                {isPowerOn && (<h2>
                   S<sub>p</sub>O<sub>2</sub> %
-                </h2>
+                </h2>)}
               </div>
             </div>
           </div>
           <div className="row my-1">
             <div className="col-sm-9">
               <div className="waveform-container border border-warning">
-                <div className="waveform-text text-warning">CAPNO</div>
-                {renderGraph && (
+                {isPowerOn && (<div className="waveform-text text-warning">CAPNO</div>)}
+                {isPowerOn && isPatientSelected && (
                   <ECGGraph
                     id="capno"
                     strokeColor="orange"
@@ -413,23 +416,23 @@ class App extends React.Component {
             </div>
             <div className="col-sm-3">
               <div className="side-container border border-warning text-white">
-                <h1>{this.state.selectedPatient.respiratoryRPM}</h1>
-                <h5>Resp. rpm</h5>
-                <h1>{this.state.selectedPatient.endTidal}</h1>
-                <h5>
+                {isPowerOn && (<h1>{this.state.selectedPatient.respiratoryRPM}</h1>)}
+                {isPowerOn && (<h5>Resp. rpm</h5>)}
+                {isPowerOn && (<h1>{this.state.selectedPatient.endTidal}</h1>)}
+                {isPowerOn && (<h5>
                   ETCO<sub>2</sub> mmHg
-                </h5>
+                </h5>)}
               </div>
             </div>
           </div>
           <div className="row mt-1">
             <div className="col-sm-3 text-start text-white">
               <div className="patient-container border border-white">
-                <h5 className="text-white text-start">Patient:</h5>
-                <h5>{this.state.selectedPatient.name}</h5>
-                <h5 className="text-white text-start">
+                {isPowerOn && (<h5 className="text-white text-start">Patient:</h5>)}
+                {isPowerOn && (<h5>{this.state.selectedPatient.name}</h5>)}
+                {isPowerOn && (<h5 className="text-white text-start">
                   {this.state.selectedPatient.ageType}
-                </h5>
+                </h5>)}
               </div>
             </div>
             <div className="col-sm-4 text-center">
@@ -476,19 +479,19 @@ class App extends React.Component {
             </div>
             <div className="col-sm-5 d-flex justify-content-between">
               <div className="pressure-container border border-white">
-                <h2 className="text-white text-center">
+                {isPowerOn && (<h2 className="text-white text-center">
                   S: {this.state.selectedPatient.bloodPressureSystolic}
-                </h2>
+                </h2>)}
               </div>
               <div className="pressure-container border border-white">
-                <h2 className="text-white text-center">
+                {isPowerOn && (<h2 className="text-white text-center">
                   M: {this.state.selectedPatient.bloodPressureMean}
-                </h2>
+                </h2>)}
               </div>
               <div className="pressure-container border border-white">
-                <h2 className="text-white text-center">
+                {isPowerOn && (<h2 className="text-white text-center">
                   D: {this.state.selectedPatient.bloodPressureDiastolic}
-                </h2>
+                </h2>)}
               </div>
               <button
                 onClick={() => {
