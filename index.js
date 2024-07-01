@@ -256,20 +256,20 @@ class App extends React.Component {
               </div>
             </div>
           <div className="row mt-1">
-            <div className="col-sm-1 text-center">
+            <div className="col-sm-1 text-center top-buttons">
               <PowerButton
                 power={this.state.power}
                 onPowerChange={this.handlePowerChange}
               />
             </div>
-            <div className="col-sm-8 text-center">
+            <div className="col-sm-8 text-center top-buttons">
               <button
                 onClick={() => {
                   isPowerOn && this.setState({ page: "Patients" });
                 }}
                 className="btn btn-primary btn-lg m-1"
               >
-                <i className="fa fa-users"></i>
+                <i className="fa fa-users fa-2x"></i>
               </button>
               <button
                 onClick={() => {
@@ -278,7 +278,7 @@ class App extends React.Component {
                 className="btn btn-primary btn-lg m-1"
                 style={{ outline: 'none', boxShadow: 'none' }}
               >
-                Alarms
+                <i class="fa fa-clock-o fa-2x"></i>
               </button>
               <button
                 onClick={() => {
@@ -287,7 +287,8 @@ class App extends React.Component {
                 className="btn btn-primary btn-lg m-1"
                 style={{ outline: 'none', boxShadow: 'none' }}
               >
-                Data I/O
+                {/* data i/o */}
+                <i class="fa fa-table fa-2x"></i>
               </button>
               <button
                 onClick={() => {
@@ -296,7 +297,8 @@ class App extends React.Component {
                 className="btn btn-primary btn-lg m-1"
                 style={{ outline: 'none', boxShadow: 'none' }}
               >
-                Display
+                {/* display*/}
+                <i class="fa fa-desktop fa-2x"></i>
               </button>
               <button
                 onClick={() => {
@@ -305,7 +307,8 @@ class App extends React.Component {
                 className="btn btn-primary btn-lg m-1"
                 style={{ outline: 'none', boxShadow: 'none' }}
               >
-                Camera
+                {/* camera */}
+                <i class="fa fa-camera fa-2x"></i>
               </button>
               <button
                 onClick={() => {
@@ -314,7 +317,8 @@ class App extends React.Component {
                 className="btn btn-primary btn-lg m-1"
                 style={{ outline: 'none', boxShadow: 'none' }}
               >
-                Waveform
+                {/* waveform */}
+                <i class="fa fa-line-chart fa-2x"></i>
               </button>
               <button
                 onClick={() => {
@@ -323,7 +327,9 @@ class App extends React.Component {
                 className="btn btn-primary btn-lg m-1"
                 style={{ outline: 'none', boxShadow: 'none' }}
               >
-                Events
+                {/* events */}
+                <i class="fa fa-calendar-check-o fa-2x"></i>
+
               </button>
               <button
                 onClick={() => {
@@ -332,7 +338,8 @@ class App extends React.Component {
                 className="btn btn-primary btn-lg m-1"
                 style={{ outline: 'none', boxShadow: 'none' }}
               >
-                Full Menu
+                {/* full menu */}
+                <i class="fa fa-bars fa-2x"></i>
               </button>
             </div>
             <div className="col-sm-3">
