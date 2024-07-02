@@ -19,7 +19,7 @@ class PowerButton extends React.Component{
                 <div>
                     <button type="button" 
                         onClick={this.toggle} 
-                        className="btn btn-danger btn-lg m-1"
+                        className="btn btn-danger btn-lg m-1 power-button"
                         title="Power On"
                         aria-label="Power On">
                         <i className="fa fa-power-off fa-2x"></i>
@@ -32,7 +32,7 @@ class PowerButton extends React.Component{
                 <div>
                     <button type="button" 
                         onClick={this.toggle} 
-                        className="btn btn-success btn-lg m-1"
+                        className="btn btn-success btn-lg m-1 power-button"
                         title="Power Off"
                         aria-label="Power Off">
                         <i className="fa fa-power-off fa-2x"></i>

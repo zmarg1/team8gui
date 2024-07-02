@@ -240,8 +240,14 @@ class App extends React.Component {
       return (
         <div className="container bg-dark">
           <div className="row bg-primary">
-            <div className="col-sm-9"></div>
-            <div className="col-sm-3 d-flex justify-content-end text-end align-items-center">
+            <div className="col-sm-4 d-flex justify-content-start text-start align-items-center">
+              {isPowerOn && <span>Corsium Connection Active <i className="fa fa-check-circle mr-2 text-success"></i></span>}
+            </div>
+            <div className="col-sm-4 d-flex justify-content-end text-end align-items-center">
+              
+            </div>
+            <div className="col-sm-4 d-flex justify-content-end text-end align-items-center">
+              
               {isPowerOn && <span>95%</span>}
               {isPowerOn && <i className="fa fa-signal icon-bar ml-2"></i>}
               {isPowerOn && <i className="fa fa-plug icon-bar"></i>}
@@ -258,23 +264,14 @@ class App extends React.Component {
             </div>
           </div>
           <div className="row mt-1">
-            <div className="col-sm-2 d-flex justify-content-center align-items-center">
+            <div className="col-sm-1 d-flex align-items-center justify-content-center">
               <PowerButton
                 power={this.state.power}
                 onPowerChange={this.handlePowerChange}
               />
             </div>
-            <div className="col-sm-7 ">
-              <button
-                onClick={() => {
-                  isPowerOn && this.setState({ page: "Patients" });
-                }}
-                className="btn btn-primary btn-lg m-1 top-buttons"
-                title="Patient Page"
-                aria-label="Patient Page"
-              >
-                <i className="fa fa-users"></i>
-              </button>
+            <div className="col-sm-8 button-container">
+              
               <button
                 onClick={() => {}}
                 className="btn btn-primary btn-lg m-1 top-buttons"
@@ -326,11 +323,40 @@ class App extends React.Component {
               <button
                 onClick={() => {}}
                 className="btn btn-primary btn-lg m-1 top-buttons"
+                title="Previous Activity"
+                aria-label="Previous Activity"
+              >
+                <i className="fa fa-undo"></i>
+              </button>
+              <button
+                onClick={() => {}}
+                className="btn btn-primary btn-lg m-1 top-buttons"
+                title="Home"
+                aria-label="Home"
+              >
+                <i className="fa fa-home"></i>
+              </button>
+              <button
+                onClick={() => {}}
+                className="btn btn-primary btn-lg m-1 top-buttons"
                 title="Full Menu"
                 aria-label="Full Menu"
               >
                 <i className="fa fa-bars"></i>
               </button>
+              
+              
+              <button
+                onClick={() => {
+                  isPowerOn && this.setState({ page: "Patients" });
+                }}
+                className="btn btn-info btn-lg m-1 top-buttons"
+                title="Patient Page"
+                aria-label="Patient Page"
+              >
+                <i className="fa fa-users"></i>
+              </button>
+              
             </div>
             <div className="col-sm-3">
               <div className="temp-container border border-white text-white text-center">
@@ -453,9 +479,8 @@ class App extends React.Component {
             <div className="col-sm-3 text-start text-white mb-1">
               <div className="patient-container border border-white">
                 {isPowerOn && (
-                  <h5 className="text-white text-start">Patient:</h5>
+                  <h5 className="text-white text-start">Patient: {this.state.selectedPatient.name}</h5>
                 )}
-                {isPowerOn && <h5>{this.state.selectedPatient.name}</h5>}
                 {isPowerOn && (
                   <h5 className="text-white text-start">
                     {this.state.selectedPatient.ageType}
@@ -463,7 +488,7 @@ class App extends React.Component {
                 )}
               </div>
             </div>
-            <div className="col-sm-4">
+            <div className="col-sm-4 button-container">
               <button
                 onClick={() => {}}
                 className="btn btn-success btn-md mx-1 bottom-buttons"
@@ -505,7 +530,7 @@ class App extends React.Component {
                 <i className="fa fa-sun-o"></i>
               </button>
             </div>
-            <div className="col-sm-5 d-flex justify-content-between">
+            <div className="col-sm-5 d-flex justify-content-between mb-1">
               <div className="pressure-container border border-white">
                 {isPowerOn && (
                   <h2 className="text-white text-center">
@@ -513,7 +538,7 @@ class App extends React.Component {
                   </h2>
                 )}
               </div>
-              <div className="pressure-container border border-white">
+              <div className="pressure-container border border-white ">
                 {isPowerOn && (
                   <h2 className="text-white text-center">
                     M: {this.state.selectedPatient.bloodPressureMean}
@@ -528,7 +553,7 @@ class App extends React.Component {
                 )}
               </div>
               <button onClick={() => {}} 
-                className="btn btn-warning btn-lg m-1"
+                className="btn btn-warning btn-lg m-1 bottom-buttons"
                 title="Start Blood Pressure Read"
                 aria-label="Start Blood Pressure Read"
               >
