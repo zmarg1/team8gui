@@ -4,6 +4,8 @@ class App extends React.Component {
     this.state = {
       page: "Home",
       power: 0,
+      isPoweringUp:false,
+      isPoweringDown:false,
       patientDB: [
         {
           id: 0,
@@ -179,6 +181,14 @@ class App extends React.Component {
     );
   };
 
+  handlePoweringUpChange = (isPoweringUp) => {
+    this.setState({isPoweringUp:isPoweringUp});
+  }
+
+  handlePoweringDownChange = (isPoweringDown) => {
+    this.setState({isPoweringDown:isPoweringDown});
+  }
+
   handlePatientSelect = (id) => {
     const newPatient = this.state.patientDB.find(
       (patient) => patient.id === id
@@ -235,20 +245,23 @@ class App extends React.Component {
     );
     const isPatientSelected = this.state.selectedPatient.id !== 0;
     const isPowerOn = this.state.power === 1;
+    const isPoweringUp = this.state.isPoweringUp;
+    const isPoweringDown = this.state.isPoweringDown;
 
     if (this.state.page === "Home") {
       return (
         <div className="container bg-dark">
           <div className="row bg-primary">
             <div className="col-sm-4 d-flex justify-content-start text-start align-items-center">
-              {isPowerOn && <span>Corsium Connection Active <i className="fa fa-check-circle mr-2 text-success"></i></span>}
+              {isPowerOn && <span className ="top-bar align-items-center">Corsium Connection Active <i className="fa fa-check-circle mr-2 text-success"></i></span>}
+            </div>
+            <div className="col-sm-4 d-flex justify-content-center text-center align-items-center">
+            {isPoweringUp && <span className ="top-bar">Device Powering Up . . .</span>}
+            {isPoweringDown && <span className ="top-bar">Device Powering Down . . .</span>}
             </div>
             <div className="col-sm-4 d-flex justify-content-end text-end align-items-center">
               
-            </div>
-            <div className="col-sm-4 d-flex justify-content-end text-end align-items-center">
-              
-              {isPowerOn && <span>95%</span>}
+              {isPowerOn && <span >95%</span>}
               {isPowerOn && <i className="fa fa-signal icon-bar ml-2"></i>}
               {isPowerOn && <i className="fa fa-plug icon-bar"></i>}
               {isPowerOn && (
@@ -264,10 +277,12 @@ class App extends React.Component {
             </div>
           </div>
           <div className="row mt-1">
-            <div className="col-sm-1 d-flex align-items-center justify-content-center">
+            <div className="col-sm-1 button-container">
               <PowerButton
                 power={this.state.power}
                 onPowerChange={this.handlePowerChange}
+                onPoweringUpChange={this.handlePoweringUpChange}
+                onPoweringDownChange={this.handlePoweringDownChange}
               />
             </div>
             <div className="col-sm-8 button-container">

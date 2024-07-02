@@ -1,20 +1,49 @@
+
 class PowerButton extends React.Component{
     constructor(props){
         super(props);
+        this.state = {isPoweringUp: false};
+        this.state = {isPoweringDown: false};
 
     }
     toggle = () => {
-        const p = this.props.power;
-        if (p === 0){
-            this.props.onPowerChange(1);
+        const power = this.props.power;
+        const isPoweringUp = this.state.isPoweringUp;
+        const onPoweringUpChange = this.props.onPoweringUpChange;
+        const onPoweringDownChange = this.props.onPoweringDownChange;
+
+        // turns the power to powering on mode for 3 seconds
+        if (power === 0 && !isPoweringUp){
+            this.setState({ isPoweringUp: true });
+            onPoweringUpChange(true);
+            
+            setTimeout (() => {
+                this.setState({ isPoweringUp: false });
+                this.props.onPowerChange(1);
+                onPoweringUpChange(false);
+            }, 3000);
         }
-        else {
-            this.props.onPowerChange(0);
+        //  Turn the device off once powered up
+        else if (power === 1){
+            this.setState({ isPoweringDown: true });
+            onPoweringDownChange(true);
+            
+            setTimeout (() => {
+                this.setState({ isPoweringDown: false });
+                this.props.onPowerChange(0);
+                onPoweringDownChange(false);
+            }, 3000);
         }
     }
+    
+    
+
     render(){
-        const p = this.props.power;  
-        if (p === 0) {
+        const power = this.props.power;
+        const isPoweringUp = this.state.isPoweringUp;
+        const isPoweringDown = this.state.isPoweringDown;
+
+        if (power === 0 && !isPoweringUp) {
             return(
                 <div>
                     <button type="button" 
@@ -22,12 +51,39 @@ class PowerButton extends React.Component{
                         className="btn btn-danger btn-lg m-1 power-button"
                         title="Power On"
                         aria-label="Power On">
-                        <i className="fa fa-power-off fa-2x"></i>
+                        <i className="fa fa-power-off"></i>
                     </button>
                 </div>
             );
         }
-        else {
+        else if (power === 0 && isPoweringUp) {
+            return(
+                <div>
+                    <button type="button" 
+                        onClick={this.toggle} 
+                        className="btn btn-info btn-lg m-1 power-button"
+                        title="Powering Up"
+                        aria-label="Powering Up">
+                        <i className="fa fa-power-off"></i>
+                    </button>
+                </div>
+            );
+        }
+        else if (power === 1 && isPoweringDown) {
+            return(
+                <div>
+                    <button type="button" 
+                        onClick={this.toggle} 
+                        className="btn btn-warning btn-lg m-1 power-button"
+                        title="Powering Down"
+                        aria-label="Powering Down">
+                        <i className="fa fa-power-off"></i>
+                    </button>
+                </div>
+            );
+        }
+
+        else if (power === 1 && !isPoweringDown) {
             return(
                 <div>
                     <button type="button" 
@@ -35,7 +91,7 @@ class PowerButton extends React.Component{
                         className="btn btn-success btn-lg m-1 power-button"
                         title="Power Off"
                         aria-label="Power Off">
-                        <i className="fa fa-power-off fa-2x"></i>
+                        <i className="fa fa-power-off"></i>
                     </button>
                 </div>
             );

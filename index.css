@@ -1,8 +1,15 @@
+.top-bar {
+    height:1em;
+    font-weight: bold;
+}
+
 .power-button {
     border-radius: 2em;
-    width: 4em; 
-    height: 4em; 
+    font-size:2em;
+    flex: 1 1 auto; 
+    margin: 5px;  
 }
+
 .waveform-container{
     position: relative; 
     background-color: black;
