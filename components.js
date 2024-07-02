@@ -16,18 +16,26 @@ class PowerButton extends React.Component{
         const p = this.props.power;  
         if (p === 0) {
             return(
-                <div className="text-center">
-                    <button type="button" onClick={this.toggle} className="btn btn-danger btn-lg m-1">
-                        <i className="fa fa-power-off"></i>
+                <div>
+                    <button type="button" 
+                        onClick={this.toggle} 
+                        className="btn btn-danger btn-lg m-1"
+                        title="Power On"
+                        aria-label="Power On">
+                        <i className="fa fa-power-off fa-2x"></i>
                     </button>
                 </div>
             );
         }
         else {
             return(
-                <div className="text-center">
-                    <button type="button" onClick={this.toggle} className="btn btn-success btn-lg m-1">
-                        <i className="fa fa-power-off"></i>
+                <div>
+                    <button type="button" 
+                        onClick={this.toggle} 
+                        className="btn btn-success btn-lg m-1"
+                        title="Power Off"
+                        aria-label="Power Off">
+                        <i className="fa fa-power-off fa-2x"></i>
                     </button>
                 </div>
             );

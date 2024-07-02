@@ -241,111 +241,112 @@ class App extends React.Component {
         <div className="container bg-dark">
           <div className="row bg-primary">
             <div className="col-sm-9"></div>
-              <div className="col-sm-3 d-flex justify-content-end text-end align-items-center">
-                {isPowerOn && (<span >95%</span>)}
-                {isPowerOn && (<i className="fa fa-signal icon-bar ml-2"></i>)}
-                {isPowerOn && (<i className="fa fa-plug icon-bar"></i>)}
-                {isPowerOn && (<img
+            <div className="col-sm-3 d-flex justify-content-end text-end align-items-center">
+              {isPowerOn && <span>95%</span>}
+              {isPowerOn && <i className="fa fa-signal icon-bar ml-2"></i>}
+              {isPowerOn && <i className="fa fa-plug icon-bar"></i>}
+              {isPowerOn && (
+                <img
                   src="img/bluetooth2.png"
                   alt="bluetooth logo"
                   width="20px"
                   height="auto"
-                />)}
-                
-                <TimeComponent />
-              </div>
+                />
+              )}
+
+              <TimeComponent />
             </div>
+          </div>
           <div className="row mt-1">
-            <div className="col-sm-1 text-center">
+            <div className="col-sm-2 d-flex justify-content-center align-items-center">
               <PowerButton
                 power={this.state.power}
                 onPowerChange={this.handlePowerChange}
               />
             </div>
-            <div className="col-sm-8 text-center">
+            <div className="col-sm-7 ">
               <button
                 onClick={() => {
                   isPowerOn && this.setState({ page: "Patients" });
                 }}
-                className="btn btn-primary btn-lg m-1"
+                className="btn btn-primary btn-lg m-1 top-buttons"
+                title="Patient Page"
+                aria-label="Patient Page"
               >
                 <i className="fa fa-users"></i>
               </button>
               <button
-                onClick={() => {
-                  
-                }}
-                className="btn btn-primary btn-lg m-1"
-                style={{ outline: 'none', boxShadow: 'none' }}
+                onClick={() => {}}
+                className="btn btn-primary btn-lg m-1 top-buttons"
+                title="Alarms"
+                aria-label="Alarms"
               >
-                Alarms
+                <i className="fa fa-clock-o"></i>
               </button>
               <button
-                onClick={() => {
-                  
-                }}
-                className="btn btn-primary btn-lg m-1"
-                style={{ outline: 'none', boxShadow: 'none' }}
+                onClick={() => {}}
+                className="btn btn-primary btn-lg m-1 top-buttons"
+                title="Data Input/Output"
+                aria-label="Data Input/Output"
               >
-                Data I/O
+                <i className="fa fa-exchange"></i>
               </button>
               <button
-                onClick={() => {
-                  
-                }}
-                className="btn btn-primary btn-lg m-1"
-                style={{ outline: 'none', boxShadow: 'none' }}
+                onClick={() => {}}
+                className="btn btn-primary btn-lg m-1 top-buttons"
+                title="Display Options"
+                aria-label="Display Options"
               >
-                Display
+                <i className="fa fa-desktop"></i>
               </button>
               <button
-                onClick={() => {
-                  
-                }}
-                className="btn btn-primary btn-lg m-1"
-                style={{ outline: 'none', boxShadow: 'none' }}
+                onClick={() => {}}
+                className="btn btn-primary btn-lg m-1 top-buttons"
+                title="Camera"
+                aria-label="Camera"
               >
-                Camera
+                <i className="fa fa-camera"></i>
               </button>
               <button
-                onClick={() => {
-
-                }}
-                className="btn btn-primary btn-lg m-1"
-                style={{ outline: 'none', boxShadow: 'none' }}
+                onClick={() => {}}
+                className="btn btn-primary btn-lg m-1 top-buttons"
+                title="Waveform"
+                aria-label="Waveform"
               >
-                Waveform
+                <i className="fa fa-heartbeat"></i>
               </button>
               <button
-                onClick={() => {
-                  
-                }}
-                className="btn btn-primary btn-lg m-1"
-                style={{ outline: 'none', boxShadow: 'none' }}
+                onClick={() => {}}
+                className="btn btn-primary btn-lg m-1 top-buttons"
+                title="Events"
+                aria-label="Events"
               >
-                Events
+                <i className="fa fa-calendar-check-o"></i>
               </button>
               <button
-                onClick={() => {
-                  
-                }}
-                className="btn btn-primary btn-lg m-1"
-                style={{ outline: 'none', boxShadow: 'none' }}
+                onClick={() => {}}
+                className="btn btn-primary btn-lg m-1 top-buttons"
+                title="Full Menu"
+                aria-label="Full Menu"
               >
-                Full Menu
+                <i className="fa fa-bars"></i>
               </button>
             </div>
             <div className="col-sm-3">
               <div className="temp-container border border-white text-white text-center">
-                {isPowerOn && (<h2 className="">Temp:</h2>)}
-                {isPowerOn && (<h2>{this.state.selectedPatient.temperature} &#8457;</h2>)}
+                {isPowerOn && <h2 className="">Temp:</h2>}
+                {isPowerOn && (
+                  <h2>{this.state.selectedPatient.temperature} &#8457;</h2>
+                )}
               </div>
             </div>
           </div>
           <div className="row my-1">
             <div className="col-sm-9">
               <div className="waveform-container border border-success">
-                {isPowerOn && (<div className="waveform-text text-success">ECG II</div>)}
+                {isPowerOn && (
+                  <div className="waveform-text text-success">ECG II</div>
+                )}
                 {isPowerOn && isPatientSelected && (
                   <ECGGraph
                     id="ecg2"
@@ -358,30 +359,34 @@ class App extends React.Component {
             </div>
             <div className="col-sm-3">
               <div className="side-container border border-success text-white text-center">
-                {isPowerOn && (<h1>{this.state.selectedPatient.heartRate}</h1>)}
-                {isPowerOn && (<h2>HR BPM</h2>)}
+                {isPowerOn && <h1>{this.state.selectedPatient.heartRate}</h1>}
+                {isPowerOn && <h2>HR BPM</h2>}
               </div>
             </div>
           </div>
           <div className="row my-1">
             <div className="col-sm-9">
               <div className="waveform-container border border-success">
-                {isPowerOn && (<div className="waveform-text text-success">ECG I</div>)}
+                {isPowerOn && (
+                  <div className="waveform-text text-success">ECG I</div>
+                )}
                 {isPowerOn && isPatientSelected && (
-                    <ECGGraph
-                      id="ecg1"
-                      strokeColor="lime"
-                      amplitude={30}
-                      shift={0.059}
-                    />
-                  )}
+                  <ECGGraph
+                    id="ecg1"
+                    strokeColor="lime"
+                    amplitude={30}
+                    shift={0.059}
+                  />
+                )}
               </div>
             </div>
             <div className="col-sm-3">
               <div className="side-container border border-success text-white text-center">
-                {isPowerOn && (<h1>{this.state.selectedPatient.heartLead}</h1>)}
+                {isPowerOn && <h1>{this.state.selectedPatient.heartLead}</h1>}
                 <span>
-                  {isPowerOn && (<i className="fa fa-heartbeat fa-5x text-danger"></i>)}
+                  {isPowerOn && (
+                    <i className="fa fa-heartbeat fa-5x text-danger"></i>
+                  )}
                 </span>
               </div>
             </div>
@@ -389,7 +394,9 @@ class App extends React.Component {
           <div className="row my-1">
             <div className="col-sm-9">
               <div className="waveform-container border border-primary">
-                {isPowerOn && (<div className="waveform-text text-primary">PLETH</div>)}
+                {isPowerOn && (
+                  <div className="waveform-text text-primary">PLETH</div>
+                )}
                 {isPowerOn && isPatientSelected && (
                   <ECGGraph
                     id="pleth"
@@ -402,17 +409,21 @@ class App extends React.Component {
             </div>
             <div className="col-sm-3">
               <div className="side-container border border-primary text-white text-center">
-                {isPowerOn && (<h1>{this.state.selectedPatient.spo2}</h1>)}
-                {isPowerOn && (<h2>
-                  S<sub>p</sub>O<sub>2</sub> %
-                </h2>)}
+                {isPowerOn && <h1>{this.state.selectedPatient.spo2}</h1>}
+                {isPowerOn && (
+                  <h2>
+                    S<sub>p</sub>O<sub>2</sub> %
+                  </h2>
+                )}
               </div>
             </div>
           </div>
           <div className="row my-1">
             <div className="col-sm-9">
               <div className="waveform-container border border-warning">
-                {isPowerOn && (<div className="waveform-text text-warning">CAPNO</div>)}
+                {isPowerOn && (
+                  <div className="waveform-text text-warning">CAPNO</div>
+                )}
                 {isPowerOn && isPatientSelected && (
                   <ECGGraph
                     id="capno"
@@ -425,94 +436,101 @@ class App extends React.Component {
             </div>
             <div className="col-sm-3">
               <div className="side-container border border-warning text-white">
-                {isPowerOn && (<h1>{this.state.selectedPatient.respiratoryRPM}</h1>)}
-                {isPowerOn && (<h5>Resp. rpm</h5>)}
-                {isPowerOn && (<h1>{this.state.selectedPatient.endTidal}</h1>)}
-                {isPowerOn && (<h5>
-                  ETCO<sub>2</sub> mmHg
-                </h5>)}
+                {isPowerOn && (
+                  <h1>{this.state.selectedPatient.respiratoryRPM}</h1>
+                )}
+                {isPowerOn && <h5>Resp. rpm</h5>}
+                {isPowerOn && <h1>{this.state.selectedPatient.endTidal}</h1>}
+                {isPowerOn && (
+                  <h5>
+                    ETCO<sub>2</sub> mmHg
+                  </h5>
+                )}
               </div>
             </div>
           </div>
           <div className="row mt-1">
-            <div className="col-sm-3 text-start text-white">
+            <div className="col-sm-3 text-start text-white mb-1">
               <div className="patient-container border border-white">
-                {isPowerOn && (<h5 className="text-white text-start">Patient:</h5>)}
-                {isPowerOn && (<h5>{this.state.selectedPatient.name}</h5>)}
-                {isPowerOn && (<h5 className="text-white text-start">
-                  {this.state.selectedPatient.ageType}
-                </h5>)}
+                {isPowerOn && (
+                  <h5 className="text-white text-start">Patient:</h5>
+                )}
+                {isPowerOn && <h5>{this.state.selectedPatient.name}</h5>}
+                {isPowerOn && (
+                  <h5 className="text-white text-start">
+                    {this.state.selectedPatient.ageType}
+                  </h5>
+                )}
               </div>
             </div>
-            <div className="col-sm-4 text-center">
+            <div className="col-sm-4">
               <button
-                onClick={() => {
-                  
-                }}
-                className="btn btn-success btn-lg m-1"
-                style={{ outline: 'none', boxShadow: 'none' }}
+                onClick={() => {}}
+                className="btn btn-success btn-md mx-1 bottom-buttons"
+                title="Connect"
+                aria-label="Connect"
               >
                 <i className="fa fa-phone"></i>
               </button>
               <button
-                onClick={() => {
-                  
-                }}
-                className="btn btn-danger btn-lg m-1"
-                style={{ outline: 'none', boxShadow: 'none' }}
+                onClick={() => {}}
+                className="btn btn-danger btn-md mx-1 bottom-buttons"
+                title="Disconnect"
+                aria-label="Disconnect"
               >
                 <i className="fa fa-phone"></i>
               </button>
               <button
-                onClick={() => {
-                  
-                }}
-                className="btn btn-primary btn-lg m-1"
-                style={{ outline: 'none', boxShadow: 'none' }}
+                onClick={() => {}}
+                className="btn btn-primary btn-md mx-1 bottom-buttons"
+                title="Alarm Suspend"
+                aria-label="Alarm Suspend"
               >
-                <i className="fa fa-bell"></i>
+                <span className="material-icons">snooze</span>
               </button>
               <button
-                onClick={() => {
-                  
-                }}
-                className="btn btn-primary btn-lg m-1"
-                style={{ outline: 'none', boxShadow: 'none' }}
+                onClick={() => {}}
+                className="btn btn-primary btn-md mx-1 bottom-buttons"
+                title="Alarm Suspend"
+                aria-label="Alarm Suspend"
               >
-                <i className="fa fa-bell-slash-o"></i>
+                <span className="material-icons">alarm_off</span>
               </button>
               <button
-                onClick={() => {
-                  
-                }}
-                className="btn btn-primary btn-lg m-1"
-                style={{ outline: 'none', boxShadow: 'none' }}
+                onClick={() => {}}
+                className="btn btn-primary btn-md mx-1 bottom-buttons"
+                title="Battery Gas Gauge Light"
+                aria-label="Battery Gas Gauge Light"
               >
                 <i className="fa fa-sun-o"></i>
               </button>
             </div>
             <div className="col-sm-5 d-flex justify-content-between">
               <div className="pressure-container border border-white">
-                {isPowerOn && (<h2 className="text-white text-center">
-                  S: {this.state.selectedPatient.bloodPressureSystolic}
-                </h2>)}
+                {isPowerOn && (
+                  <h2 className="text-white text-center">
+                    S: {this.state.selectedPatient.bloodPressureSystolic}
+                  </h2>
+                )}
               </div>
               <div className="pressure-container border border-white">
-                {isPowerOn && (<h2 className="text-white text-center">
-                  M: {this.state.selectedPatient.bloodPressureMean}
-                </h2>)}
+                {isPowerOn && (
+                  <h2 className="text-white text-center">
+                    M: {this.state.selectedPatient.bloodPressureMean}
+                  </h2>
+                )}
               </div>
               <div className="pressure-container border border-white">
-                {isPowerOn && (<h2 className="text-white text-center">
-                  D: {this.state.selectedPatient.bloodPressureDiastolic}
-                </h2>)}
+                {isPowerOn && (
+                  <h2 className="text-white text-center">
+                    D: {this.state.selectedPatient.bloodPressureDiastolic}
+                  </h2>
+                )}
               </div>
-              <button
-                onClick={() => {
-
-                }}
+              <button onClick={() => {}} 
                 className="btn btn-warning btn-lg m-1"
-                style={{ outline: 'none', boxShadow: 'none' }}
+                title="Start Blood Pressure Read"
+                aria-label="Start Blood Pressure Read"
               >
                 <i className="fa fa-play"></i>
               </button>

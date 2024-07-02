@@ -62,3 +62,17 @@
     margin-right: 5px;
     color: #53c242 
 }
+
+.top-buttons {
+    font-size:2em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottom-buttons {
+    font-size:1.5em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
