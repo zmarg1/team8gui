@@ -491,8 +491,8 @@ class App extends React.Component {
               <button
                 onClick={() => {}}
                 className="btn btn-primary btn-md mx-1 bottom-buttons"
-                title="Alarm Suspend"
-                aria-label="Alarm Suspend"
+                title="Alarm Silence"
+                aria-label="Alarm Silence"
               >
                 <span className="material-icons">alarm_off</span>
               </button>
