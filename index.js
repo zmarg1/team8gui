@@ -273,7 +273,8 @@ class App extends React.Component {
                 />
               )}
 
-              <TimeComponent />
+              {isPowerOn && (<TimeComponent />)}
+              {!isPowerOn && (<span>&nbsp;</span>)}
             </div>
           </div>
           <div className="row mt-1">
