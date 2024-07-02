@@ -273,7 +273,7 @@ class App extends React.Component {
                 title="Patient Page"
                 aria-label="Patient Page"
               >
-                <i className="fa fa-users"></i>
+                <i className="fa fa-users fa-2x"></i>
               </button>
               <button
                 onClick={() => {}}
