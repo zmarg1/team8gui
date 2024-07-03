@@ -28,7 +28,11 @@ Example of button adding the Patient to the database
     >
     Add Patient
 </button>
-```  
+```
+
+![alt text](/img/patientInfo.png)
+
+This is the display of the patient vitals when selecting a patient, this is the main feature of the patient monitoring system it shows the infomation of each and every patient that is entered in its database.
 
 ## Installation
 
