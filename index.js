@@ -273,7 +273,7 @@ class App extends React.Component {
                 />
               )}
 
-              {isPowerOn && (<TimeComponent className="top-bar"/>)}
+              {isPowerOn && (<TimeComponent/>)}
               {!isPowerOn && (<span>&nbsp;</span>)}
             </div>
           </div>
