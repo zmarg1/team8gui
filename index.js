@@ -256,12 +256,12 @@ class App extends React.Component {
               {isPowerOn && <span className ="top-bar align-items-center">Corsium Connection Active <i className="fa fa-check-circle mr-2 text-success"></i></span>}
             </div>
             <div className="col-sm-4 d-flex justify-content-center text-center align-items-center">
-            {isPoweringUp && <span className ="top-bar">Device Powering Up . . .</span>}
-            {isPoweringDown && <span className ="top-bar">Device Powering Down . . .</span>}
+            {isPoweringUp && <span className="top-bar">Device Powering Up . . .</span>}
+            {isPoweringDown && <span className="top-bar">Device Powering Down . . .</span>}
             </div>
             <div className="col-sm-4 d-flex justify-content-end text-end align-items-center">
               
-              {isPowerOn && <span >95%</span>}
+              {isPowerOn && <span className="top-bar">95%</span>}
               {isPowerOn && <i className="fa fa-signal icon-bar ml-2"></i>}
               {isPowerOn && <i className="fa fa-plug icon-bar"></i>}
               {isPowerOn && (
@@ -273,7 +273,7 @@ class App extends React.Component {
                 />
               )}
 
-              {isPowerOn && (<TimeComponent />)}
+              {isPowerOn && (<TimeComponent className="top-bar"/>)}
               {!isPowerOn && (<span>&nbsp;</span>)}
             </div>
           </div>
