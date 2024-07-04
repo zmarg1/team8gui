@@ -27,6 +27,9 @@ class App extends React.Component {
           ST1:"-",
           ST2:"-",
           QT:"-",
+          SpHb:"-",
+          SpCO:"-",
+          SpMet:"-",
         },
         {
           id: 1,
@@ -48,6 +51,9 @@ class App extends React.Component {
           ST1:"1.0",
           ST2:"1.5",
           QT:"350",
+          SpHb:"9.0",
+          SpCO:"8.5",
+          SpMet:"1.1",
         },
         {
           id: 2,
@@ -69,6 +75,9 @@ class App extends React.Component {
           ST1:"1.9",
           ST2:"0.5",
           QT:"425",
+          SpHb:"9.6",
+          SpCO:"8.6",
+          SpMet:"1.0",
         },
         {
           id: 3,
@@ -90,6 +99,9 @@ class App extends React.Component {
           ST1:"1.1",
           ST2:"1.2",
           QT:"450",
+          SpHb:"9.2",
+          SpCO:"7.9",
+          SpMet:"1.8",
         },
       ],
       selectedPatient: null,
@@ -113,6 +125,9 @@ class App extends React.Component {
         ST1:"",
         ST2:"",
         QT:"",
+        SpHb:"",
+        SpCO:"",
+        SpMet:"",
       },
       messageAddPatient: "",
       messageEditPatient: "",
@@ -145,6 +160,9 @@ class App extends React.Component {
         ST1:"",
         ST2:"",
         QT:"",
+        SpHb:"",
+        SpCO:"",
+        SpMet:"",
       },
     });
   };
@@ -181,7 +199,11 @@ class App extends React.Component {
       NIBPTime: newPatient.NIBPTime,
       ST1: newPatient.ST1,
       ST2: newPatient.ST2,
-      QT: newPatient.QT,      
+      QT: newPatient.QT, 
+      SpHb: newPatient.SpHb,
+      SpCO: newPatient.SpCO,
+      SpMet: newPatient.SpMet,
+      
     };
 
     // Reset new patient info
@@ -509,7 +531,7 @@ class App extends React.Component {
             </div>
             <div className="col-sm-3">
             <div className="side-wrapper">
-              <div className="side-container border border-success text-white text-center m-0">
+              <div className="side-container border border-success text-white text-center m-1">
                 {isPowerOn && <h2>{this.state.selectedPatient.heartRate}</h2>}
                 {isPowerOn && <h3>HR BPM</h3>}
                 {isPowerOn && (
@@ -527,7 +549,7 @@ class App extends React.Component {
                 </div>
                  )}
                 {isPowerOn && (
-                <div className="d-flex justify-content-between w-75">
+                  <div className="d-flex justify-content-between w-75">
                   <span>QT</span>
                   <span>{this.state.selectedPatient.QT}</span>
                   <span>ms</span>
@@ -598,22 +620,32 @@ class App extends React.Component {
             <div className="side-wrapper">
 
               <div className="side-container border border-primary text-white text-center">
-                <div>
                 {isPowerOn &&  (
                   <h1>
                   {this.state.selectedPatient.spo2} <h4 className="d-inline"> SpO<sub>2</sub> %</h4>
                   </h1>
                   )}
-                </div>
-                <div>
                 {isPowerOn && (
-                  <div>
-                  <h5>SpHb {this.state.selectedPatient.spo2} g/dl</h5>
-                  <h5>SpCO {this.state.selectedPatient.spo2} %</h5>
-                  <h5>SpMeT {this.state.selectedPatient.spo2} %</h5>
-                  </div>
-                )}  
+                  <div className="d-flex justify-content-between w-75">
+                  <span>SpHb</span>
+                  <span>{this.state.selectedPatient.SpHb}</span>
+                  <span>g/dl</span>
                 </div>
+                )}
+                {isPowerOn && (
+                  <div className="d-flex justify-content-between w-75">
+                  <span>SpCO</span>
+                  <span>{this.state.selectedPatient.SpCO}</span>
+                  <span>%</span>
+                </div>
+                )}
+                {isPowerOn && (
+                  <div className="d-flex justify-content-between w-75">
+                  <span>SpMet</span>
+                  <span>{this.state.selectedPatient.SpMet}</span>
+                  <span>%</span>
+                </div>
+                )}  
                 </div>
 
               <div className="side-alert border border-primary text-white text-center justify-content-start">
@@ -1265,6 +1297,60 @@ class App extends React.Component {
                   </div>
 
                   <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="SpHb" className="form-label">
+                        SpHb (g/dl):
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="SpHb"
+                        value={this.state.newPatient.SpHb}
+                        onChange={this.handleChange}
+                        name="SpHb"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="SpCO" className="form-label">
+                        SpCO %:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="SpCO"
+                        value={this.state.newPatient.SpCO}
+                        onChange={this.handleChange}
+                        name="SpCO"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="SpMet" className="form-label">
+                        SpMet %:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="SpMet"
+                        value={this.state.newPatient.SpMet}
+                        onChange={this.handleChange}
+                        name="SpMet"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
                     <div className="col-sm-12 text-center">
                       <button
                         type="button"
@@ -1663,6 +1749,60 @@ class App extends React.Component {
                         value={this.state.newPatient.QT}
                         onChange={this.handleChange}
                         name="QT"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="SpHb" className="form-label">
+                        SpHb (g/dl):
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="SpHb"
+                        value={this.state.newPatient.SpHb}
+                        onChange={this.handleChange}
+                        name="SpHb"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="SpCO" className="form-label">
+                        SpCO %:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="SpCO"
+                        value={this.state.newPatient.SpCO}
+                        onChange={this.handleChange}
+                        name="SpCO"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="SpMet" className="form-label">
+                        SpMet %:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="SpMet"
+                        value={this.state.newPatient.SpMet}
+                        onChange={this.handleChange}
+                        name="SpMet"
                       />
                     </div>
                   </div>
