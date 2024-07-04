@@ -23,6 +23,10 @@ class App extends React.Component {
           bloodPressureDiastolic: "-",
           bloodPressureMean: "-",
           heartLead: "-",
+          NIBPTime:"-",
+          ST1:"-",
+          ST2:"-",
+          QT:"-",
         },
         {
           id: 1,
@@ -39,7 +43,11 @@ class App extends React.Component {
           bloodPressureSystolic: 110,
           bloodPressureDiastolic: 70,
           bloodPressureMean: 90,
-          heartLead: "12 Lead",
+          heartLead: 12,
+          NIBPTime:"7:01",
+          ST1:"1.0",
+          ST2:"1.5",
+          QT:"350",
         },
         {
           id: 2,
@@ -56,7 +64,11 @@ class App extends React.Component {
           bloodPressureSystolic: 100,
           bloodPressureDiastolic: 60,
           bloodPressureMean: 70,
-          heartLead: "12 Lead",
+          heartLead: 3,
+          NIBPTime:"7:58",
+          ST1:"1.9",
+          ST2:"0.5",
+          QT:"425",
         },
         {
           id: 3,
@@ -73,7 +85,11 @@ class App extends React.Component {
           bloodPressureSystolic: 120,
           bloodPressureDiastolic: 80,
           bloodPressureMean: 90,
-          heartLead: "12 Lead",
+          heartLead: 4,
+          NIBPTime:"8:56",
+          ST1:"1.1",
+          ST2:"1.2",
+          QT:"450",
         },
       ],
       selectedPatient: null,
@@ -93,6 +109,10 @@ class App extends React.Component {
         bloodPressureDiastolic: "",
         bloodPressureMean: "",
         heartLead: "",
+        NIBPTime:"",
+        ST1:"",
+        ST2:"",
+        QT:"",
       },
       messageAddPatient: "",
       messageEditPatient: "",
@@ -121,6 +141,10 @@ class App extends React.Component {
         bloodPressureDiastolic: "",
         bloodPressureMean: "",
         heartLead: "",
+        NIBPTime:"",
+        ST1:"",
+        ST2:"",
+        QT:"",
       },
     });
   };
@@ -154,6 +178,10 @@ class App extends React.Component {
       bloodPressureDiastolic: newPatient.bloodPressureDiastolic,
       bloodPressureMean: newPatient.bloodPressureMean,
       heartLead: newPatient.heartLead,
+      NIBPTime: newPatient.NIBPTime,
+      ST1: newPatient.ST1,
+      ST2: newPatient.ST2,
+      QT: newPatient.QT,      
     };
 
     // Reset new patient info
@@ -239,6 +267,10 @@ class App extends React.Component {
         bloodPressureDiastolic: "-",
         bloodPressureMean: "-",
         heartLead: "-",
+        NIBPTime: "-",
+        ST1:"-",
+        ST2:"-",
+        QT:"-"
       },
     ];
     this.setState({
@@ -477,9 +509,32 @@ class App extends React.Component {
             </div>
             <div className="col-sm-3">
             <div className="side-wrapper">
-              <div className="side-container border border-success text-white text-center">
-                {isPowerOn && <h1>{this.state.selectedPatient.heartRate}</h1>}
-                {isPowerOn && <h2>HR BPM</h2>}
+              <div className="side-container border border-success text-white text-center m-0">
+                {isPowerOn && <h2>{this.state.selectedPatient.heartRate}</h2>}
+                {isPowerOn && <h3>HR BPM</h3>}
+                {isPowerOn && (
+                <div className="d-flex justify-content-between w-75">
+                  <span>ST1-II</span>
+                  <span>{this.state.selectedPatient.ST1}</span>
+                  <span>mm</span>
+                </div>
+                )}
+                {isPowerOn && (
+                <div className="d-flex justify-content-between w-75">
+                  <span>ST2-I</span>
+                  <span>{this.state.selectedPatient.ST2}</span>
+                  <span>mm</span>
+                </div>
+                 )}
+                {isPowerOn && (
+                <div className="d-flex justify-content-between w-75">
+                  <span>QT</span>
+                  <span>{this.state.selectedPatient.QT}</span>
+                  <span>ms</span>
+                </div>
+                )}
+                
+
               </div>
               <div className="side-alert border border-success text-white text-center">
                 {isPowerOn && <h5 className="">180</h5>}
@@ -507,7 +562,8 @@ class App extends React.Component {
             <div className="col-sm-3">
               <div className="side-wrapper">
                 <div className="side-container border border-success text-white text-center">
-                  {isPowerOn && <h1>{this.state.selectedPatient.heartLead}</h1>}
+                  {isPowerOn && <h1>{this.state.selectedPatient.heartLead} Lead</h1>}
+                  
                   <span>
                     {isPowerOn && (
                       <i className="fa fa-heartbeat fa-5x text-danger"></i>
@@ -719,7 +775,7 @@ class App extends React.Component {
                 )}
                 {isPowerOn && (
                   <p className="text-white">
-                    NIBP@12:32
+                    NIBP@{this.state.selectedPatient.NIBPTime}
                   </p>
                 )}
               </div>
@@ -754,23 +810,7 @@ class App extends React.Component {
       );
     } else if (this.state.page === "Patients") {
       return (
-        <div className="container bg-light" style={{ height: "1000px" }} >
-          <div className="row bg-primary">
-            <div className="col-sm-9"></div>
-            <div className="col-sm-3 text-end align-items">
-              <i className="fa fa-signal icon-bar"></i>
-              <i className="fa fa-plug icon-bar"></i>
-              <TimeComponent />
-              <img
-                src="img/bluetooth2.png"
-                alt="bluetooth logo"
-                width="20px"
-                height="auto"
-              />
-              <span>95%</span>
-            </div>
-          </div>
-
+        <div className="container bg-light" style={{ height: "1000px" }}>
           <div className="row bg-info mb-3">
             <div className="col-sm-12 text-center text-white ">
               <h1>Patient page</h1>
@@ -869,21 +909,6 @@ class App extends React.Component {
     } else if (this.state.page === "Patient-Add") {
       return (
         <div className="container bg-light" style={{ height: "1010px" }}>
-          <div className="row bg-primary">
-            <div className="col-sm-9"></div>
-            <div className="col-sm-3 text-end align-items">
-              <i className="fa fa-signal icon-bar"></i>
-              <i className="fa fa-plug icon-bar"></i>
-              <TimeComponent />
-              <img
-                src="img/bluetooth2.png"
-                alt="bluetooth logo"
-                width="20px"
-                height="auto"
-              />
-              <span>95%</span>
-            </div>
-          </div>
           <div className="row bg-info mb-3">
             <div className="col-sm-12 text-center text-white">
               <h1>Add New Patient</h1>
@@ -1164,6 +1189,77 @@ class App extends React.Component {
                         value={this.state.newPatient.heartLead}
                         onChange={this.handleChange}
                         name="heartLead"
+                      />
+                    </div>
+                  </div>
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="NIBP time" className="form-label">
+                        NIBP Reading Time:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="NIBPTime"
+                        value={this.state.newPatient.NIBPTime}
+                        onChange={this.handleChange}
+                        name="NIBPTime"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="ST1" className="form-label">
+                        ST1-ECGII elevation (mm):
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="ST1"
+                        value={this.state.newPatient.ST1}
+                        onChange={this.handleChange}
+                        name="ST1"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="ST2" className="form-label">
+                        ST2-ECG1 elevation (mm):
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="ST2"
+                        value={this.state.newPatient.ST2}
+                        onChange={this.handleChange}
+                        name="ST2"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="QT" className="form-label">
+                        QT Interval (ms):
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="QT"
+                        value={this.state.newPatient.QT}
+                        onChange={this.handleChange}
+                        name="QT"
                       />
                     </div>
                   </div>
@@ -1495,6 +1591,78 @@ class App extends React.Component {
                         value={this.state.newPatient.heartLead}
                         onChange={this.handleChange}
                         name="heartLead"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="NIBPTime" className="form-label">
+                        NIBP Reading Time:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="NIBPTime"
+                        value={this.state.newPatient.NIBPTime}
+                        onChange={this.handleChange}
+                        name="NIBPTime"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="ST1" className="form-label">
+                       ST1-ECGII elevation (mm):
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="ST1"
+                        value={this.state.newPatient.ST1}
+                        onChange={this.handleChange}
+                        name="ST1"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="ST2" className="form-label">
+                       ST2-ECGI elevation (mm):
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="ST2"
+                        value={this.state.newPatient.ST2}
+                        onChange={this.handleChange}
+                        name="ST2"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="QT" className="form-label">
+                       QT Interval (ms):
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="QT"
+                        value={this.state.newPatient.QT}
+                        onChange={this.handleChange}
+                        name="QT"
                       />
                     </div>
                   </div>
