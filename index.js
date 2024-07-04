@@ -663,8 +663,9 @@ class App extends React.Component {
                 className="btn btn-primary btn-md mx-1 bottom-buttons"
                 title="Battery Gas Gauge Light"
                 aria-label="Battery Gas Gauge Light"
+                style={{color:"yellow"}}
               >
-                <i className="fa fa-battery-three-quarters"></i>
+                <i className="fa fa-battery-three-quarters" ></i>
               </button>
               <button
                 className="btn btn-none btn-md mx-0 bottom-buttons"
@@ -712,9 +713,14 @@ class App extends React.Component {
               </div>
               <div className="pressure-container border border-white mr-1">
                 {isPowerOn && (
-                  <h2 className="text-white text-center">
+                  <h3 className="text-white">
                     M: {this.state.selectedPatient.bloodPressureMean}
-                  </h2>
+                  </h3>
+                )}
+                {isPowerOn && (
+                  <p className="text-white">
+                    NIBP@12:32
+                  </p>
                 )}
               </div>
               <div className="side-wrapper mr-1"> 
@@ -862,7 +868,7 @@ class App extends React.Component {
       );
     } else if (this.state.page === "Patient-Add") {
       return (
-        <div className="container bg-light" style={{ height: "1000px" }}>
+        <div className="container bg-light" style={{ height: "1010px" }}>
           <div className="row bg-primary">
             <div className="col-sm-9"></div>
             <div className="col-sm-3 text-end align-items">
@@ -1202,7 +1208,7 @@ class App extends React.Component {
     }
     else if (this.state.page === "Patient-Edit") {
       return (
-        <div className="container bg-light" style={{ height: "1000px" }}>
+        <div className="container bg-light" style={{ height: "1010px" }}>
           <div className="row bg-primary">
             <div className="col-sm-9"></div>
             <div className="col-sm-3 text-end align-items">
