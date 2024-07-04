@@ -359,10 +359,25 @@ class App extends React.Component {
         <div className="container bg-dark" style={{ minWidth: "1100px", height: "1010px" }}>
           <div className="row bg-primary">
             <div className="col-sm-4 d-flex justify-content-start text-start align-items-center">
-              {isPowerOn && <i className="fa fa-plug icon-bar"></i>}
-              {isPowerOn && <i className="fa fa-battery-full icon-bar" style={{color:"#28a745"}}></i>}
-              {isPowerOn && <i className="fa fa-battery-full icon-bar" style={{color:"#28a745"}}></i>}
-              {isPowerOn && <i className="fa fa-bolt icon-bar"></i>}
+              {isPowerOn && <i 
+                className="fa fa-plug icon-bar"
+                title="Mains power LED"
+                aria-label="Mains power LED"></i>}
+              {isPowerOn && <i 
+                className="fa fa-battery-full icon-bar" 
+                style={{color:"#28a745"}}
+                title="Mains charger attached"
+                aria-label="Mains charger attached"></i>}
+              {isPowerOn && <i 
+                className="fa fa-battery-full icon-bar" 
+                style={{color:"#28a745"}}
+                title="Battery Charging"
+                aria-label="Battery Charging"></i>}
+              {isPowerOn && <i 
+                className="fa fa-bolt icon-bar"
+                title="Battery Charger LED"
+                aria-label="Battery Charger LED">
+                </i>}
             </div>
             <div className="col-sm-4 d-flex justify-content-center text-center align-items-center">
               {isPoweringUp && <span className="top-bar">Device Powering Up . . .</span>}
@@ -371,15 +386,23 @@ class App extends React.Component {
               {isPowerOn && !(isPoweringDown || isPoweringUp) && <span className="top-bar align-items-center">Corsium Connection Active <i className="fa fa-check-circle mr-2 text-success"></i></span>}
             </div>
             <div className="col-sm-4 d-flex justify-content-end text-end align-items-center">
-
-              {isPowerOn && <span className="top-bar">95%</span>}
-              {isPowerOn && <i className="fa fa-signal icon-bar ml-2"></i>}
+              {isPowerOn && <span 
+                className="top-bar"
+                title="Battery Charge Percentage"
+                aria-label="Battery Charge Percentage">95%</span>}
+              {isPowerOn && <i 
+                className="fa fa-signal icon-bar ml-2"
+                title="Internet Signal Strength"
+                aria-label="Internet Signal Strength"
+                ></i>}
               {isPowerOn && (
                 <img
                   src="img/bluetooth2.png"
                   alt="bluetooth logo"
                   width="20px"
                   height="auto"
+                  title="Bluetooth Connected"
+                  aria-label="Bluetooth Connected"
                 />
               )}
 
@@ -759,6 +782,7 @@ class App extends React.Component {
                 className="btn btn-none btn-md mx-0 bottom-buttons"
                 title="LED 1"
                 aria-label="LED 1"
+                style={{ cursor: "default" }}
               >
                 <i className="fa fa-battery"></i>
               </button>
@@ -766,6 +790,7 @@ class App extends React.Component {
                 className="btn btn-none btn-md mx-0 bottom-buttons"
                 title="LED 2"
                 aria-label="LED 2"
+                style={{ cursor: "default" }}
               >
                 <i className="fa fa-battery"></i>
               </button>
@@ -773,6 +798,7 @@ class App extends React.Component {
                 className="btn btn-none btn-md mx-0 bottom-buttons"
                 title="LED 3"
                 aria-label="LED 3"
+                style={{ cursor: "default" }}
               >
                 <i className="fa fa-battery"></i>
               </button>
@@ -780,6 +806,7 @@ class App extends React.Component {
                 className="btn btn-none btn-md mx-0 bottom-buttons"
                 title="LED 4"
                 aria-label="LED 4"
+                style={{ cursor: "default" }}
               >
                 <i className="fa fa-battery"></i>
               </button>
