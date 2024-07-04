@@ -4,8 +4,8 @@ class App extends React.Component {
     this.state = {
       page: "Home",
       power: 0,
-      isPoweringUp:false,
-      isPoweringDown:false,
+      isPoweringUp: false,
+      isPoweringDown: false,
       patientDB: [
         {
           id: 0,
@@ -94,7 +94,8 @@ class App extends React.Component {
         bloodPressureMean: "",
         heartLead: "",
       },
-      message: "",
+      messageAddPatient: "",
+      messageEditPatient: "",
     };
 
     this.state.selectedPatient = this.state.patientDB.find(
@@ -102,13 +103,35 @@ class App extends React.Component {
     );
   }
 
+  resetNewPatient = () => {
+    this.setState({
+      newPatient: {
+        id: "",
+        name: "",
+        ageType: "",
+        age: "",
+        prescribedDrugs: "",
+        incidentInfo: "",
+        temperature: "",
+        heartRate: "",
+        spo2: "",
+        respiratoryRPM: "",
+        endTidal: "",
+        bloodPressureSystolic: "",
+        bloodPressureDiastolic: "",
+        bloodPressureMean: "",
+        heartLead: "",
+      },
+    });
+  };
+
   addPatient = () => {
     const { patientDB, newPatient } = this.state;
 
     // Checks if the ID is provided and not already in db
     if (!newPatient.id || patientDB[newPatient.id]) {
       this.setState({
-        message: "Please provide a valid or unique ID for the patient.",
+        messageAddPatient: "Please provide a valid or unique ID for the patient.",
         newPatient: { ...newPatient, id: "" },
       });
       return;
@@ -154,7 +177,7 @@ class App extends React.Component {
           bloodPressureMean: "",
           heartLead: "",
         },
-        message: "Patient added successfully.",
+        messageAddPatient: "Patient added successfully.",
       },
       () => {
         const JSONObject = JSON.stringify(this.state.db);
@@ -182,18 +205,18 @@ class App extends React.Component {
   };
 
   handlePoweringUpChange = (isPoweringUp) => {
-    this.setState({isPoweringUp:isPoweringUp});
+    this.setState({ isPoweringUp: isPoweringUp });
   }
 
   handlePoweringDownChange = (isPoweringDown) => {
-    this.setState({isPoweringDown:isPoweringDown});
+    this.setState({ isPoweringDown: isPoweringDown });
   }
 
   handlePatientSelect = (id) => {
-    const newPatient = this.state.patientDB.find(
+    const patientToShow = this.state.patientDB.find(
       (patient) => patient.id === id
     );
-    this.setState({ selectedPatient: newPatient });
+    this.setState({ selectedPatient: patientToShow });
   };
 
   handlePatientDelete = (id) => {
@@ -238,6 +261,50 @@ class App extends React.Component {
     });
   };
 
+  // Function that sets a patient to edit as the new patient 
+  handleViewEditPatient = (id) => {
+
+    const patient = this.state.patientDB.find((patient) => patient.id === id);
+    this.setState({
+      newPatient: { ...patient },
+      page: "Patient-Edit"
+    });
+  };
+
+  handleUpdatePatient = () => {
+    const { patientDB, newPatient } = this.state;
+
+    // Get the index of the patient to be updated
+    const patientIndex = patientDB.findIndex((patient) => patient.id === newPatient.id);
+
+    // Check if patient was not found and return error
+    if (patientIndex === -1) {
+      this.setState({
+        messageEditPatient: "Patient not found.",
+      });
+      return;
+    }
+
+    // Update the patient details
+    const updatedDB = [...patientDB];
+    updatedDB[patientIndex] = newPatient;
+
+    // Update the state and localStorage
+    this.setState(
+      {
+        patientDB: updatedDB,
+        messageEditPatient: "Patient updated successfully.",
+      },
+      () => {
+        const JSONObject = JSON.stringify(this.state.patientDB);
+        localStorage.setItem("localDB", JSONObject);
+        console.log(JSONObject);
+        this.resetNewPatient();
+      }
+    );
+  };
+
+
   render() {
     // Create a filtered db to exclude the null patient
     const filteredPatients = this.state.patientDB.filter(
@@ -250,17 +317,17 @@ class App extends React.Component {
 
     if (this.state.page === "Home") {
       return (
-        <div className="container bg-dark">
+        <div className="container bg-dark" style={{ height: "1000px" }}>
           <div className="row bg-primary">
             <div className="col-sm-4 d-flex justify-content-start text-start align-items-center">
-              {isPowerOn && <span className ="top-bar align-items-center">Corsium Connection Active <i className="fa fa-check-circle mr-2 text-success"></i></span>}
+              {isPowerOn && <span className="top-bar align-items-center">Corsium Connection Active <i className="fa fa-check-circle mr-2 text-success"></i></span>}
             </div>
             <div className="col-sm-4 d-flex justify-content-center text-center align-items-center">
-            {isPoweringUp && <span className="top-bar">Device Powering Up . . .</span>}
-            {isPoweringDown && <span className="top-bar">Device Powering Down . . .</span>}
+              {isPoweringUp && <span className="top-bar">Device Powering Up . . .</span>}
+              {isPoweringDown && <span className="top-bar">Device Powering Down . . .</span>}
             </div>
             <div className="col-sm-4 d-flex justify-content-end text-end align-items-center">
-              
+
               {isPowerOn && <span className="top-bar">95%</span>}
               {isPowerOn && <i className="fa fa-signal icon-bar ml-2"></i>}
               {isPowerOn && <i className="fa fa-plug icon-bar"></i>}
@@ -273,7 +340,7 @@ class App extends React.Component {
                 />
               )}
 
-              {isPowerOn && (<TimeComponent/>)}
+              {isPowerOn && (<TimeComponent />)}
               {!isPowerOn && (<span>&nbsp;</span>)}
             </div>
           </div>
@@ -287,9 +354,9 @@ class App extends React.Component {
               />
             </div>
             <div className="col-sm-8 button-container">
-              
+
               <button
-                onClick={() => {}}
+                onClick={() => { }}
                 className="btn btn-primary btn-lg m-1 top-buttons"
                 title="Alarms"
                 aria-label="Alarms"
@@ -297,7 +364,7 @@ class App extends React.Component {
                 <i className="fa fa-clock-o"></i>
               </button>
               <button
-                onClick={() => {}}
+                onClick={() => { }}
                 className="btn btn-primary btn-lg m-1 top-buttons"
                 title="Data Input/Output"
                 aria-label="Data Input/Output"
@@ -305,7 +372,7 @@ class App extends React.Component {
                 <i className="fa fa-exchange"></i>
               </button>
               <button
-                onClick={() => {}}
+                onClick={() => { }}
                 className="btn btn-primary btn-lg m-1 top-buttons"
                 title="Display Options"
                 aria-label="Display Options"
@@ -313,7 +380,7 @@ class App extends React.Component {
                 <i className="fa fa-desktop"></i>
               </button>
               <button
-                onClick={() => {}}
+                onClick={() => { }}
                 className="btn btn-primary btn-lg m-1 top-buttons"
                 title="Camera"
                 aria-label="Camera"
@@ -321,7 +388,7 @@ class App extends React.Component {
                 <i className="fa fa-camera"></i>
               </button>
               <button
-                onClick={() => {}}
+                onClick={() => { }}
                 className="btn btn-primary btn-lg m-1 top-buttons"
                 title="Waveform"
                 aria-label="Waveform"
@@ -329,7 +396,7 @@ class App extends React.Component {
                 <i className="fa fa-heartbeat"></i>
               </button>
               <button
-                onClick={() => {}}
+                onClick={() => { }}
                 className="btn btn-primary btn-lg m-1 top-buttons"
                 title="Events"
                 aria-label="Events"
@@ -337,7 +404,7 @@ class App extends React.Component {
                 <i className="fa fa-calendar-check-o"></i>
               </button>
               <button
-                onClick={() => {}}
+                onClick={() => { }}
                 className="btn btn-primary btn-lg m-1 top-buttons"
                 title="Previous Activity"
                 aria-label="Previous Activity"
@@ -345,7 +412,7 @@ class App extends React.Component {
                 <i className="fa fa-undo"></i>
               </button>
               <button
-                onClick={() => {}}
+                onClick={() => { }}
                 className="btn btn-primary btn-lg m-1 top-buttons"
                 title="Home"
                 aria-label="Home"
@@ -353,15 +420,15 @@ class App extends React.Component {
                 <i className="fa fa-home"></i>
               </button>
               <button
-                onClick={() => {}}
+                onClick={() => { }}
                 className="btn btn-primary btn-lg m-1 top-buttons"
                 title="Full Menu"
                 aria-label="Full Menu"
               >
                 <i className="fa fa-bars"></i>
               </button>
-              
-              
+
+
               <button
                 onClick={() => {
                   isPowerOn && this.setState({ page: "Patients" });
@@ -372,7 +439,7 @@ class App extends React.Component {
               >
                 <i className="fa fa-users"></i>
               </button>
-              
+
             </div>
             <div className="col-sm-3">
               <div className="temp-container border border-white text-white text-center">
@@ -506,7 +573,7 @@ class App extends React.Component {
             </div>
             <div className="col-sm-4 button-container">
               <button
-                onClick={() => {}}
+                onClick={() => { }}
                 className="btn btn-success btn-md mx-1 bottom-buttons"
                 title="Connect"
                 aria-label="Connect"
@@ -514,7 +581,7 @@ class App extends React.Component {
                 <i className="fa fa-phone"></i>
               </button>
               <button
-                onClick={() => {}}
+                onClick={() => { }}
                 className="btn btn-danger btn-md mx-1 bottom-buttons"
                 title="Disconnect"
                 aria-label="Disconnect"
@@ -522,7 +589,7 @@ class App extends React.Component {
                 <i className="fa fa-phone"></i>
               </button>
               <button
-                onClick={() => {}}
+                onClick={() => { }}
                 className="btn btn-primary btn-md mx-1 bottom-buttons"
                 title="Alarm Suspend"
                 aria-label="Alarm Suspend"
@@ -530,7 +597,7 @@ class App extends React.Component {
                 <span className="material-icons">snooze</span>
               </button>
               <button
-                onClick={() => {}}
+                onClick={() => { }}
                 className="btn btn-primary btn-md mx-1 bottom-buttons"
                 title="Alarm Silence"
                 aria-label="Alarm Silence"
@@ -538,7 +605,7 @@ class App extends React.Component {
                 <span className="material-icons">alarm_off</span>
               </button>
               <button
-                onClick={() => {}}
+                onClick={() => { }}
                 className="btn btn-primary btn-md mx-1 bottom-buttons"
                 title="Battery Gas Gauge Light"
                 aria-label="Battery Gas Gauge Light"
@@ -568,7 +635,7 @@ class App extends React.Component {
                   </h2>
                 )}
               </div>
-              <button onClick={() => {}} 
+              <button onClick={() => { }}
                 className="btn btn-warning btn-lg m-1 bottom-buttons"
                 title="Start Blood Pressure Read"
                 aria-label="Start Blood Pressure Read"
@@ -581,7 +648,7 @@ class App extends React.Component {
       );
     } else if (this.state.page === "Patients") {
       return (
-        <div className="container bg-light">
+        <div className="container bg-light" style={{ height: "1000px" }} >
           <div className="row bg-primary">
             <div className="col-sm-9"></div>
             <div className="col-sm-3 text-end align-items">
@@ -597,77 +664,73 @@ class App extends React.Component {
               <span>95%</span>
             </div>
           </div>
-          <div className="row bg-info">
-            <div className="col-sm-12 text-center text-white">
+
+          <div className="row bg-info mb-3">
+            <div className="col-sm-12 text-center text-white ">
               <h1>Patient page</h1>
             </div>
           </div>
-          <div className="row bg-light mt-2">
+          <div className="row">
             <div className="col-sm-12">
-              <table className="table table-bordered">
-                <thead className="thead-dark">
-                  <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Age Type</th>
-                    <th>Age</th>
-                    <th>Prescribed Drugs</th>
-                    <th>Incident Info</th>
-                    <th>Temp</th>
-                    <th>Heart Rate</th>
-                    <th>Resp. RPM</th>
-                    <th>End Tidal</th>
-                    <th>BP</th>
-                    <th></th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredPatients.map((patient) => (
-                    <tr key={patient.id}>
-                      <td>{patient.id}</td>
-                      <td>{patient.name}</td>
-                      <td>{patient.ageType}</td>
-                      <td>{patient.age}</td>
-                      <td>{patient.prescribedDrugs}</td>
-                      <td>{patient.incidentInfo}</td>
-                      <td>{patient.temperature}</td>
-                      <td>{patient.heartRate}</td>
-                      <td>{patient.respiratoryRPM}</td>
-                      <td>{patient.endTidal}</td>
-                      <td>
-                        {patient.bloodPressureSystolic} /{" "}
-                        {patient.bloodPressureDiastolic} (
-                        {patient.bloodPressureMean}){" "}
-                      </td>
-                      <td>
-                        <button
-                          key={patient.id}
-                          className="btn btn-primary m-1"
-                          onClick={() => this.handlePatientSelect(patient.id)}
-                        >
-                          Select
-                        </button>
-                      </td>
-                      <td>
-                        <button
-                          key={patient.id}
-                          className="btn btn-danger m-1"
-                          onClick={() => this.handlePatientDelete(patient.id)}
-                        >
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              {/* Scrollable Container */}
+              <div className="overflow-auto" style={{ maxHeight: "800px" }}>
+                <div className="row bg-light mt-2">
+                  <div className="col-sm-12">
+                    <table className="table table-bordered">
+                      <thead className="thead-dark">
+                        <tr>
+                          <th>ID</th>
+                          <th>Name</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {filteredPatients.map((patient) => (
+                          <tr key={patient.id}>
+                            <td>{patient.id}</td>
+                            <td>{patient.name}</td>
+                            <td>
+                              <button
+                                className="btn btn-success m-1"
+                                onClick={() => {
+                                  this.handlePatientSelect(patient.id);
+                                  this.setState({ page: "Home" });
+                                }
+                                }
+                              >
+                                Select
+                              </button>
+                              <button
+                                className="btn btn-primary m-1"
+                                onClick={() => {
+                                  this.setState({ messageEditPatient: "" });
+                                  this.handleViewEditPatient(patient.id);
+                                }
+                                }
+                              >
+                                View Details/Edit
+                              </button>
+                              <button
+                                className="btn btn-danger m-1"
+                                onClick={() => this.handlePatientDelete(patient.id)}
+                              >
+                                Delete
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div className="row">
             <div className="col-sm-12 text-center">
               <button
                 onClick={() => {
+                  this.setState({ messageAddPatient: "" });
                   this.setState({ page: "Patient-Add" });
                 }}
                 className="btn btn-success btn-md m-2"
@@ -699,7 +762,7 @@ class App extends React.Component {
       );
     } else if (this.state.page === "Patient-Add") {
       return (
-        <div className="container bg-light">
+        <div className="container bg-light" style={{ height: "1000px" }}>
           <div className="row bg-primary">
             <div className="col-sm-9"></div>
             <div className="col-sm-3 text-end align-items">
@@ -720,293 +783,307 @@ class App extends React.Component {
               <h1>Add New Patient</h1>
             </div>
           </div>
-          <div>
-            {/* Patient Form */}
-            <form>
-              <div className="row mb-3">
-                <div className="col-sm-2">
-                  <label htmlFor="id" className="form-label">
-                    Patient ID:
-                  </label>
-                </div>
-                <div className="col-sm-10">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="id"
-                    value={this.state.newPatient.id}
-                    onChange={this.handleChange}
-                    name="id"
-                  />
-                </div>
+          <div className="row">
+            <div className="col-sm-12">
+              {/* Scrollable Form Container */}
+              <div className="overflow-auto" style={{ maxHeight: "800px" }}>
+                {/* Patient Form */}
+                <form>
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="id" className="form-label">
+                        Patient ID:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="id"
+                        value={this.state.newPatient.id}
+                        onChange={this.handleChange}
+                        name="id"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="name" className="form-label">
+                        Name:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="name"
+                        value={this.state.newPatient.name}
+                        onChange={this.handleChange}
+                        name="name"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="ageType" className="form-label">
+                        Age Type:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="ageType"
+                        value={this.state.newPatient.ageType}
+                        onChange={this.handleChange}
+                        name="ageType"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="age" className="form-label">
+                        Age:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="age"
+                        value={this.state.newPatient.age}
+                        onChange={this.handleChange}
+                        name="age"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="prescribedDrugs" className="form-label">
+                        Prescribed Drugs:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="prescribedDrugs"
+                        value={this.state.newPatient.prescribedDrugs}
+                        onChange={this.handleChange}
+                        name="prescribedDrugs"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="incidentInfo" className="form-label">
+                        Incident Info:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <textarea
+                        className="form-control"
+                        id="incidentInfo"
+                        rows="3"
+                        value={this.state.newPatient.incidentInfo}
+                        onChange={this.handleChange}
+                        name="incidentInfo"
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="temperature" className="form-label">
+                        Temperature:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="temperature"
+                        value={this.state.newPatient.temperature}
+                        onChange={this.handleChange}
+                        name="temperature"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="heartRate" className="form-label">
+                        Heart Rate:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="heartRate"
+                        value={this.state.newPatient.heartRate}
+                        onChange={this.handleChange}
+                        name="heartRate"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="spo2" className="form-label">
+                        S<sub>p</sub>O<sub>2</sub> %:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="spo2"
+                        value={this.state.newPatient.spo2}
+                        onChange={this.handleChange}
+                        name="spo2"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="respiratoryRPM" className="form-label">
+                        Respiratory RPM:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="respiratoryRPM"
+                        value={this.state.newPatient.respiratoryRPM}
+                        onChange={this.handleChange}
+                        name="respiratoryRPM"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="endTidal" className="form-label">
+                        ETCO<sub>2</sub> mmHg:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="endTidal"
+                        value={this.state.newPatient.endTidal}
+                        onChange={this.handleChange}
+                        name="endTidal"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="bloodPressureSystolic" className="form-label">
+                        Systolic BP:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="bloodPressureSystolic"
+                        value={this.state.newPatient.bloodPressureSystolic}
+                        onChange={this.handleChange}
+                        name="bloodPressureSystolic"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label
+                        htmlFor="bloodPressureDiastolic"
+                        className="form-label"
+                      >
+                        Diastolic BP:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="bloodPressureDiastolic"
+                        value={this.state.newPatient.bloodPressureDiastolic}
+                        onChange={this.handleChange}
+                        name="bloodPressureDiastolic"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="bloodPressureMean" className="form-label">
+                        Mean Arterial BP:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="bloodPressureMean"
+                        value={this.state.newPatient.bloodPressureMean}
+                        onChange={this.handleChange}
+                        name="bloodPressureMean"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="heartLead" className="form-label">
+                        Heart Lead:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="heartLead"
+                        value={this.state.newPatient.heartLead}
+                        onChange={this.handleChange}
+                        name="heartLead"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-12 text-center">
+                      <button
+                        type="button"
+                        className="btn btn-primary"
+                        onClick={() => {
+
+                          this.addPatient();
+                        }}
+                      >
+                        Add Patient
+                      </button>
+                    </div>
+                    <div className="col-sm-12 text-start">
+                      {/* Display Message */}
+                      {this.state.messageAddPatient && <h6>{this.state.messageAddPatient}</h6>}
+                    </div>
+                  </div>
+
+                </form>
               </div>
-
-              <div className="row mb-3">
-                <div className="col-sm-2">
-                  <label htmlFor="name" className="form-label">
-                    Name:
-                  </label>
-                </div>
-                <div className="col-sm-10">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="name"
-                    value={this.state.newPatient.name}
-                    onChange={this.handleChange}
-                    name="name"
-                  />
-                </div>
-              </div>
-
-              <div className="row mb-3">
-                <div className="col-sm-2">
-                  <label htmlFor="ageType" className="form-label">
-                    Age Type:
-                  </label>
-                </div>
-                <div className="col-sm-10">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="ageType"
-                    value={this.state.newPatient.ageType}
-                    onChange={this.handleChange}
-                    name="ageType"
-                  />
-                </div>
-              </div>
-
-              <div className="row mb-3">
-                <div className="col-sm-2">
-                  <label htmlFor="age" className="form-label">
-                    Age:
-                  </label>
-                </div>
-                <div className="col-sm-10">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="age"
-                    value={this.state.newPatient.age}
-                    onChange={this.handleChange}
-                    name="age"
-                  />
-                </div>
-              </div>
-
-              <div className="row mb-3">
-                <div className="col-sm-2">
-                  <label htmlFor="prescribedDrugs" className="form-label">
-                    Prescribed Drugs:
-                  </label>
-                </div>
-                <div className="col-sm-10">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="prescribedDrugs"
-                    value={this.state.newPatient.prescribedDrugs}
-                    onChange={this.handleChange}
-                    name="prescribedDrugs"
-                  />
-                </div>
-              </div>
-
-              <div className="row mb-3">
-                <div className="col-sm-2">
-                  <label htmlFor="incidentInfo" className="form-label">
-                    Incident Info:
-                  </label>
-                </div>
-                <div className="col-sm-10">
-                  <textarea
-                    className="form-control"
-                    id="incidentInfo"
-                    rows="3"
-                    value={this.state.newPatient.incidentInfo}
-                    onChange={this.handleChange}
-                    name="incidentInfo"
-                  ></textarea>
-                </div>
-              </div>
-
-              <div className="row mb-3">
-                <div className="col-sm-2">
-                  <label htmlFor="temperature" className="form-label">
-                    Temperature:
-                  </label>
-                </div>
-                <div className="col-sm-10">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="temperature"
-                    value={this.state.newPatient.temperature}
-                    onChange={this.handleChange}
-                    name="temperature"
-                  />
-                </div>
-              </div>
-
-              <div className="row mb-3">
-                <div className="col-sm-2">
-                  <label htmlFor="heartRate" className="form-label">
-                    Heart Rate:
-                  </label>
-                </div>
-                <div className="col-sm-10">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="heartRate"
-                    value={this.state.newPatient.heartRate}
-                    onChange={this.handleChange}
-                    name="heartRate"
-                  />
-                </div>
-              </div>
-
-              <div className="row mb-3">
-                <div className="col-sm-2">
-                  <label htmlFor="spo2" className="form-label">
-                    S<sub>p</sub>O<sub>2</sub> %:
-                  </label>
-                </div>
-                <div className="col-sm-10">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="spo2"
-                    value={this.state.newPatient.spo2}
-                    onChange={this.handleChange}
-                    name="spo2"
-                  />
-                </div>
-              </div>
-
-              <div className="row mb-3">
-                <div className="col-sm-2">
-                  <label htmlFor="respiratoryRPM" className="form-label">
-                    Respiratory RPM:
-                  </label>
-                </div>
-                <div className="col-sm-10">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="respiratoryRPM"
-                    value={this.state.newPatient.respiratoryRPM}
-                    onChange={this.handleChange}
-                    name="respiratoryRPM"
-                  />
-                </div>
-              </div>
-
-              <div className="row mb-3">
-                <div className="col-sm-2">
-                  <label htmlFor="endTidal" className="form-label">
-                    ETCO<sub>2</sub> mmHg:
-                  </label>
-                </div>
-                <div className="col-sm-10">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="endTidal"
-                    value={this.state.newPatient.endTidal}
-                    onChange={this.handleChange}
-                    name="endTidal"
-                  />
-                </div>
-              </div>
-
-              <div className="row mb-3">
-                <div className="col-sm-2">
-                  <label htmlFor="bloodPressureSystolic" className="form-label">
-                    Systolic BP:
-                  </label>
-                </div>
-                <div className="col-sm-10">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="bloodPressureSystolic"
-                    value={this.state.newPatient.bloodPressureSystolic}
-                    onChange={this.handleChange}
-                    name="bloodPressureSystolic"
-                  />
-                </div>
-              </div>
-
-              <div className="row mb-3">
-                <div className="col-sm-2">
-                  <label
-                    htmlFor="bloodPressureDiastolic"
-                    className="form-label"
-                  >
-                    Diastolic BP:
-                  </label>
-                </div>
-                <div className="col-sm-10">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="bloodPressureDiastolic"
-                    value={this.state.newPatient.bloodPressureDiastolic}
-                    onChange={this.handleChange}
-                    name="bloodPressureDiastolic"
-                  />
-                </div>
-              </div>
-
-              <div className="row mb-3">
-                <div className="col-sm-2">
-                  <label htmlFor="bloodPressureMean" className="form-label">
-                    Mean Arterial BP:
-                  </label>
-                </div>
-                <div className="col-sm-10">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="bloodPressureMean"
-                    value={this.state.newPatient.bloodPressureMean}
-                    onChange={this.handleChange}
-                    name="bloodPressureMean"
-                  />
-                </div>
-              </div>
-
-              <div className="row mb-3">
-                <div className="col-sm-2">
-                  <label htmlFor="heartLead" className="form-label">
-                    Heart Lead:
-                  </label>
-                </div>
-                <div className="col-sm-10">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="heartLead"
-                    value={this.state.newPatient.heartLead}
-                    onChange={this.handleChange}
-                    name="heartLead"
-                  />
-                </div>
-              </div>
-
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={this.addPatient}
-              >
-                Add Patient
-              </button>
-
-              {/* Display Message */}
-              {this.state.message && <p>{this.state.message}</p>}
-            </form>
+            </div>
           </div>
           <div className="row">
             <div className="col-sm-12 text-center">
@@ -1023,6 +1100,338 @@ class App extends React.Component {
         </div>
       );
     }
+    else if (this.state.page === "Patient-Edit") {
+      return (
+        <div className="container bg-light" style={{ height: "1000px" }}>
+          <div className="row bg-primary">
+            <div className="col-sm-9"></div>
+            <div className="col-sm-3 text-end align-items">
+              <i className="fa fa-signal icon-bar"></i>
+              <i className="fa fa-plug icon-bar"></i>
+              <TimeComponent />
+              <img
+                src="img/bluetooth2.png"
+                alt="bluetooth logo"
+                width="20px"
+                height="auto"
+              />
+              <span>95%</span>
+            </div>
+          </div>
+          <div className="row bg-info mb-3">
+            <div className="col-sm-12 text-center text-white">
+              <h1>Edit Patient Info</h1>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-sm-12">
+              {/* Scrollable Form Container */}
+              <div className="overflow-auto" style={{ maxHeight: "800px" }}>
+                {/* Patient Form */}
+                <form>
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="id" className="form-label">
+                        <h6>Patient ID: {this.state.newPatient.id}</h6>
+                      </label>
+                    </div>
+
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="name" className="form-label">
+                        Name:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="name"
+                        value={this.state.newPatient.name}
+                        onChange={this.handleChange}
+                        name="name"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="ageType" className="form-label">
+                        Age Type:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="ageType"
+                        value={this.state.newPatient.ageType}
+                        onChange={this.handleChange}
+                        name="ageType"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="age" className="form-label">
+                        Age:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="age"
+                        value={this.state.newPatient.age}
+                        onChange={this.handleChange}
+                        name="age"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="prescribedDrugs" className="form-label">
+                        Prescribed Drugs:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="prescribedDrugs"
+                        value={this.state.newPatient.prescribedDrugs}
+                        onChange={this.handleChange}
+                        name="prescribedDrugs"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="incidentInfo" className="form-label">
+                        Incident Info:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <textarea
+                        className="form-control"
+                        id="incidentInfo"
+                        rows="3"
+                        value={this.state.newPatient.incidentInfo}
+                        onChange={this.handleChange}
+                        name="incidentInfo"
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="temperature" className="form-label">
+                        Temperature:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="temperature"
+                        value={this.state.newPatient.temperature}
+                        onChange={this.handleChange}
+                        name="temperature"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="heartRate" className="form-label">
+                        Heart Rate:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="heartRate"
+                        value={this.state.newPatient.heartRate}
+                        onChange={this.handleChange}
+                        name="heartRate"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="spo2" className="form-label">
+                        S<sub>p</sub>O<sub>2</sub> %:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="spo2"
+                        value={this.state.newPatient.spo2}
+                        onChange={this.handleChange}
+                        name="spo2"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="respiratoryRPM" className="form-label">
+                        Respiratory RPM:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="respiratoryRPM"
+                        value={this.state.newPatient.respiratoryRPM}
+                        onChange={this.handleChange}
+                        name="respiratoryRPM"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="endTidal" className="form-label">
+                        ETCO<sub>2</sub> mmHg:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="endTidal"
+                        value={this.state.newPatient.endTidal}
+                        onChange={this.handleChange}
+                        name="endTidal"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="bloodPressureSystolic" className="form-label">
+                        Systolic BP:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="bloodPressureSystolic"
+                        value={this.state.newPatient.bloodPressureSystolic}
+                        onChange={this.handleChange}
+                        name="bloodPressureSystolic"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label
+                        htmlFor="bloodPressureDiastolic"
+                        className="form-label"
+                      >
+                        Diastolic BP:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="bloodPressureDiastolic"
+                        value={this.state.newPatient.bloodPressureDiastolic}
+                        onChange={this.handleChange}
+                        name="bloodPressureDiastolic"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="bloodPressureMean" className="form-label">
+                        Mean Arterial BP:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="bloodPressureMean"
+                        value={this.state.newPatient.bloodPressureMean}
+                        onChange={this.handleChange}
+                        name="bloodPressureMean"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-2">
+                      <label htmlFor="heartLead" className="form-label">
+                        Heart Lead:
+                      </label>
+                    </div>
+                    <div className="col-sm-10">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="heartLead"
+                        value={this.state.newPatient.heartLead}
+                        onChange={this.handleChange}
+                        name="heartLead"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <div className="col-sm-12 text-center">
+                      <button
+                        type="button"
+                        className="btn btn-primary"
+                        onClick={() => {
+                          this.handleUpdatePatient();
+                          this.setState({ page: "Patients" });
+                        }}
+                      >
+                        Update Patient
+                      </button>
+                    </div>
+                    <div className="col-sm-12 text-start">
+                      {/* Display Message */}
+                      {this.state.messageEditPatient && <h6>{this.state.messageEditPatient}</h6>}
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-sm-12 text-center">
+              <button
+                onClick={() => {
+                  this.setState({ page: "Patients" });
+                }}
+                className="btn btn-primary btn-lg m-1"
+              >
+                Back
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
   }
 }
 const container = document.getElementById("root");
