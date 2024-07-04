@@ -302,20 +302,24 @@ class App extends React.Component {
 
     if (this.state.page === "Home") {
       return (
-        <div className="container bg-dark" style={{ height: "1000px" }}>
+        <div className="container bg-dark" style={{ minWidth: "1100px", height: "1010px" }}>
           <div className="row bg-primary">
             <div className="col-sm-4 d-flex justify-content-start text-start align-items-center">
-              {isPowerOn && <span className="top-bar align-items-center">Corsium Connection Active <i className="fa fa-check-circle mr-2 text-success"></i></span>}
+              {isPowerOn && <i className="fa fa-plug icon-bar"></i>}
+              {isPowerOn && <i className="fa fa-battery-full icon-bar" style={{color:"#28a745"}}></i>}
+              {isPowerOn && <i className="fa fa-battery-full icon-bar" style={{color:"#28a745"}}></i>}
+              {isPowerOn && <i className="fa fa-bolt icon-bar"></i>}
             </div>
             <div className="col-sm-4 d-flex justify-content-center text-center align-items-center">
               {isPoweringUp && <span className="top-bar">Device Powering Up . . .</span>}
               {isPoweringDown && <span className="top-bar">Device Powering Down . . .</span>}
+              
+              {isPowerOn && !(isPoweringDown || isPoweringUp) && <span className="top-bar align-items-center">Corsium Connection Active <i className="fa fa-check-circle mr-2 text-success"></i></span>}
             </div>
             <div className="col-sm-4 d-flex justify-content-end text-end align-items-center">
 
               {isPowerOn && <span className="top-bar">95%</span>}
               {isPowerOn && <i className="fa fa-signal icon-bar ml-2"></i>}
-              {isPowerOn && <i className="fa fa-plug icon-bar"></i>}
               {isPowerOn && (
                 <img
                   src="img/bluetooth2.png"
@@ -458,7 +462,7 @@ class App extends React.Component {
                 {isPowerOn && (
                   <div className="arrhythmia-text text-info">Arrhythmia Analysis On</div>
                 )}
-                {isPowerOn && (
+                {isPowerOn && isPatientSelected && (
                   <div className="millivolt-text text-success">1mV</div>
                 )}
                 {isPowerOn && isPatientSelected && (
@@ -660,11 +664,39 @@ class App extends React.Component {
                 title="Battery Gas Gauge Light"
                 aria-label="Battery Gas Gauge Light"
               >
-                <i className="fa fa-sun-o"></i>
+                <i className="fa fa-battery-three-quarters"></i>
+              </button>
+              <button
+                className="btn btn-none btn-md mx-0 bottom-buttons"
+                title="LED 1"
+                aria-label="LED 1"
+              >
+                <i className="fa fa-battery"></i>
+              </button>
+              <button
+                className="btn btn-none btn-md mx-0 bottom-buttons"
+                title="LED 2"
+                aria-label="LED 2"
+              >
+                <i className="fa fa-battery"></i>
+              </button>
+              <button
+                className="btn btn-none btn-md mx-0 bottom-buttons"
+                title="LED 3"
+                aria-label="LED 3"
+              >
+                <i className="fa fa-battery"></i>
+              </button>
+              <button
+                className="btn btn-none btn-md mx-0 bottom-buttons"
+                title="LED 4"
+                aria-label="LED 4"
+              >
+                <i className="fa fa-battery"></i>
               </button>
             </div>
             
-            <div className="col-sm-5 d-flex justify-content-between">
+            <div className="col-sm-4 d-flex justify-content-between">
               <div className="side-wrapper mr-1">
                 <div className="pressure-container border border-white text-white text-center">
                   {isPowerOn && (
@@ -674,8 +706,8 @@ class App extends React.Component {
                   )}
                 </div>
                 <div className="pressure-alert border border-white text-white">
-                    {isPowerOn && <h5 className="">160</h5>}
-                    {isPowerOn && (<h5 className="">90</h5>)}
+                    {isPowerOn && <h6 className="">160</h6>}
+                    {isPowerOn && (<h6 className="">90</h6>)}
                 </div>
               </div>
               <div className="pressure-container border border-white mr-1">
@@ -695,18 +727,22 @@ class App extends React.Component {
                 )}
                 </div>
                 <div className="pressure-alert border border-white text-white">
-                    {isPowerOn && <h5 className="">90</h5>}
-                    {isPowerOn && (<h5 className="">50</h5>)}
+                    {isPowerOn && <h6 className="">90</h6>}
+                    {isPowerOn && (<h6 className="">50</h6>)}
                 </div>
               </div>
-              <button onClick={() => { }}
-                className="btn btn-warning btn-lg m-1 bottom-buttons"
-                title="Start Blood Pressure Read"
-                aria-label="Start Blood Pressure Read"
-              >
-                <i className="fa fa-play"></i>
-              </button>
+              
+              
             </div>
+            <div className="col-sm-1 start-bp-container">
+                <button onClick={() => { }}
+                  className="btn btn-warning btn-lg"
+                  title="Start Blood Pressure Read"
+                  aria-label="Start Blood Pressure Read"
+                >
+                  <i className="fa fa-play"></i>
+                </button>
+              </div>
           </div>
         </div>
       );
