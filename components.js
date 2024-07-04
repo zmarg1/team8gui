@@ -161,9 +161,36 @@ class ECGGraph extends React.Component {
 
     drawGraph = (amplitude) => {
         if (!this.ctx) return;
-        
+
         // Clear the canvas
         this.ctx.clearRect(0, 0, this.width, this.height);
+
+        // Draw the green millivolt legend
+        if (this.props.id === 'ecg2') {
+            this.ctx.beginPath();
+            
+            // Start from bottom right
+            this.ctx.moveTo(this.width-25, this.height -2);
+
+            // Move to the right a bit
+            this.ctx.lineTo(this.width-25+5, this.height - 2);
+
+            // Move to the center
+            this.ctx.lineTo(this.width-25+5, (this.height/2));
+
+            // Move to the right a bit
+            this.ctx.lineTo(this.width-25+10, (this.height/2));
+            
+            // Move down to bottom
+            this.ctx.lineTo(this.width-25+10, this.height - 2);
+            
+            // Move right again
+            this.ctx.lineTo(this.width-25+15, this.height - 2);
+
+            this.ctx.strokeStyle = this.props.strokeColor;
+            this.ctx.lineWidth = 2;
+            this.ctx.stroke();
+        } 
 
         this.ctx.beginPath();
 

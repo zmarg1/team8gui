@@ -156,27 +156,13 @@ class App extends React.Component {
       heartLead: newPatient.heartLead,
     };
 
+    // Reset new patient info
+    this.resetNewPatient();
+
     // Update db and save to localStorage
     this.setState(
       {
         patientDB: [...patientDB, patient],
-        newPatient: {
-          id: "",
-          name: "",
-          ageType: "",
-          age: "",
-          prescribedDrugs: "",
-          incidentInfo: "",
-          temperature: "",
-          heartRate: "",
-          spo2: "",
-          respiratoryRPM: "",
-          endTidal: "",
-          bloodPressureSystolic: "",
-          bloodPressureDiastolic: "",
-          bloodPressureMean: "",
-          heartLead: "",
-        },
         messageAddPatient: "Patient added successfully.",
       },
       () => {
@@ -298,7 +284,6 @@ class App extends React.Component {
       () => {
         const JSONObject = JSON.stringify(this.state.patientDB);
         localStorage.setItem("localDB", JSONObject);
-        console.log(JSONObject);
         this.resetNewPatient();
       }
     );
@@ -442,12 +427,26 @@ class App extends React.Component {
 
             </div>
             <div className="col-sm-3">
+            <div className="side-wrapper">
               <div className="temp-container border border-white text-white text-center">
-                {isPowerOn && <h2 className="">Temp:</h2>}
-                {isPowerOn && (
-                  <h2>{this.state.selectedPatient.temperature} &#8457;</h2>
-                )}
+                  <div>{isPowerOn && (
+                    <h1> <h5 className="d-inline">T1 </h5>
+                      {this.state.selectedPatient.temperature} 
+                      
+                    </h1>
+                    
+                  )}
+                  {isPowerOn && <h3>Temp:  &#8457;</h3>}
+                  </div>
+                  
+                  <div></div>
               </div>
+              <div className="border border-white text-white text-center temp-alert">
+                {isPowerOn && <h5 className="">100.0</h5>}
+                {isPowerOn && (<h5 className="">95.0</h5>)}
+              </div>
+              </div>
+              
             </div>
           </div>
           <div className="row my-1">
@@ -455,6 +454,12 @@ class App extends React.Component {
               <div className="waveform-container border border-success">
                 {isPowerOn && (
                   <div className="waveform-text text-success">ECG II</div>
+                )}
+                {isPowerOn && (
+                  <div className="arrhythmia-text text-info">Arrhythmia Analysis On</div>
+                )}
+                {isPowerOn && (
+                  <div className="millivolt-text text-success">1mV</div>
                 )}
                 {isPowerOn && isPatientSelected && (
                   <ECGGraph
@@ -467,10 +472,16 @@ class App extends React.Component {
               </div>
             </div>
             <div className="col-sm-3">
+            <div className="side-wrapper">
               <div className="side-container border border-success text-white text-center">
                 {isPowerOn && <h1>{this.state.selectedPatient.heartRate}</h1>}
                 {isPowerOn && <h2>HR BPM</h2>}
               </div>
+              <div className="side-alert border border-success text-white text-center">
+                {isPowerOn && <h5 className="">180</h5>}
+                {isPowerOn && (<h5 className="">50</h5>)}
+                </div>
+            </div>
             </div>
           </div>
           <div className="row my-1">
@@ -490,14 +501,21 @@ class App extends React.Component {
               </div>
             </div>
             <div className="col-sm-3">
-              <div className="side-container border border-success text-white text-center">
-                {isPowerOn && <h1>{this.state.selectedPatient.heartLead}</h1>}
-                <span>
-                  {isPowerOn && (
-                    <i className="fa fa-heartbeat fa-5x text-danger"></i>
-                  )}
-                </span>
+              <div className="side-wrapper">
+                <div className="side-container border border-success text-white text-center">
+                  {isPowerOn && <h1>{this.state.selectedPatient.heartLead}</h1>}
+                  <span>
+                    {isPowerOn && (
+                      <i className="fa fa-heartbeat fa-5x text-danger"></i>
+                    )}
+                  </span>
+                </div>
+                <div className="side-alert border border-success text-white text-center">
+                {isPowerOn && <h5 className="">100</h5>}
+                {isPowerOn && (<h5 className="">95</h5>)}
+                </div>
               </div>
+              
             </div>
           </div>
           <div className="row my-1">
@@ -517,14 +535,33 @@ class App extends React.Component {
               </div>
             </div>
             <div className="col-sm-3">
+            <div className="side-wrapper">
+
               <div className="side-container border border-primary text-white text-center">
-                {isPowerOn && <h1>{this.state.selectedPatient.spo2}</h1>}
+                <div>
+                {isPowerOn &&  (
+                  <h1>
+                  {this.state.selectedPatient.spo2} <h4 className="d-inline"> SpO<sub>2</sub> %</h4>
+                  </h1>
+                  )}
+                </div>
+                <div>
                 {isPowerOn && (
-                  <h2>
-                    S<sub>p</sub>O<sub>2</sub> %
-                  </h2>
-                )}
+                  <div>
+                  <h5>SpHb {this.state.selectedPatient.spo2} g/dl</h5>
+                  <h5>SpCO {this.state.selectedPatient.spo2} %</h5>
+                  <h5>SpMeT {this.state.selectedPatient.spo2} %</h5>
+                  </div>
+                )}  
+                </div>
+                </div>
+
+              <div className="side-alert border border-primary text-white text-center justify-content-start">
+                {isPowerOn && <h5>100</h5>}
+                {isPowerOn && <h5>90</h5>}
               </div>
+
+            </div>
             </div>
           </div>
           <div className="row my-1">
@@ -544,6 +581,7 @@ class App extends React.Component {
               </div>
             </div>
             <div className="col-sm-3">
+            <div className="side-wrapper">
               <div className="side-container border border-warning text-white">
                 {isPowerOn && (
                   <h1>{this.state.selectedPatient.respiratoryRPM}</h1>
@@ -556,9 +594,21 @@ class App extends React.Component {
                   </h5>
                 )}
               </div>
+                <div className="side-alert border border-warning text-white text-center">
+                  <div>
+                  {isPowerOn && <h5>50</h5>}
+                  {isPowerOn && <h5>5</h5>}
+                  </div>
+                  <div>
+                  {isPowerOn && <h5>60</h5>}
+                  {isPowerOn && <h5>25</h5>}
+                  </div>
+                </div>
+
+            </div>
             </div>
           </div>
-          <div className="row mt-1">
+          <div className="row my-1">
             <div className="col-sm-3 text-start text-white mb-1">
               <div className="patient-container border border-white">
                 {isPowerOn && (
@@ -571,7 +621,7 @@ class App extends React.Component {
                 )}
               </div>
             </div>
-            <div className="col-sm-4 button-container">
+            <div className="col-sm-4 button-wrapper">
               <button
                 onClick={() => { }}
                 className="btn btn-success btn-md mx-1 bottom-buttons"
@@ -594,7 +644,7 @@ class App extends React.Component {
                 title="Alarm Suspend"
                 aria-label="Alarm Suspend"
               >
-                <span className="material-icons">snooze</span>
+                <i className="fa fa-hourglass"></i>
               </button>
               <button
                 onClick={() => { }}
@@ -602,7 +652,7 @@ class App extends React.Component {
                 title="Alarm Silence"
                 aria-label="Alarm Silence"
               >
-                <span className="material-icons">alarm_off</span>
+                <i className="fa fa-bell-slash"></i>
               </button>
               <button
                 onClick={() => { }}
@@ -613,27 +663,41 @@ class App extends React.Component {
                 <i className="fa fa-sun-o"></i>
               </button>
             </div>
-            <div className="col-sm-5 d-flex justify-content-between mb-1">
-              <div className="pressure-container border border-white">
-                {isPowerOn && (
-                  <h2 className="text-white text-center">
-                    S: {this.state.selectedPatient.bloodPressureSystolic}
-                  </h2>
-                )}
+            
+            <div className="col-sm-5 d-flex justify-content-between">
+              <div className="side-wrapper mr-1">
+                <div className="pressure-container border border-white text-white text-center">
+                  {isPowerOn && (
+                    <h2>
+                      S: {this.state.selectedPatient.bloodPressureSystolic}
+                    </h2>
+                  )}
+                </div>
+                <div className="pressure-alert border border-white text-white">
+                    {isPowerOn && <h5 className="">160</h5>}
+                    {isPowerOn && (<h5 className="">90</h5>)}
+                </div>
               </div>
-              <div className="pressure-container border border-white ">
+              <div className="pressure-container border border-white mr-1">
                 {isPowerOn && (
                   <h2 className="text-white text-center">
                     M: {this.state.selectedPatient.bloodPressureMean}
                   </h2>
                 )}
               </div>
-              <div className="pressure-container border border-white">
+              <div className="side-wrapper mr-1"> 
+                <div className="pressure-container border border-white">
+               
                 {isPowerOn && (
                   <h2 className="text-white text-center">
                     D: {this.state.selectedPatient.bloodPressureDiastolic}
                   </h2>
                 )}
+                </div>
+                <div className="pressure-alert border border-white text-white">
+                    {isPowerOn && <h5 className="">90</h5>}
+                    {isPowerOn && (<h5 className="">50</h5>)}
+                </div>
               </div>
               <button onClick={() => { }}
                 className="btn btn-warning btn-lg m-1 bottom-buttons"
@@ -735,7 +799,7 @@ class App extends React.Component {
                 }}
                 className="btn btn-success btn-md m-2"
               >
-                Add New Patient
+                Add New Patients
               </button>
               <button
                 onClick={this.handleClearDB}
