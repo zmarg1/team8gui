@@ -20,7 +20,7 @@ Clicking the Power Button turns the device power on. The device takes three seco
 ![alt text](./img/homePagePoweringUp.png)
 <p align="center"><b>Figure 2:</b> Device in the Powering Up State</p>
 
-After three seconds, the device is powered on. The power button changes from blue to green and the device is now fully functionally (See Figure 3). Users can hover over any button or icon to see the intended purpose. Additionally, users can select the large, wide light blue to access the "Patients" page. See the section on the Patient Database to learn more.
+After three seconds, the device is powered on. The power button changes from blue to green and the device is now fully functional (See Figure 3). Users can hover over any button or icon to see the intended purpose. Additionally, users can select the large, wide light blue button to access the "Patients" page. See the section on the Patient Database to learn more.
 
 ![alt text](./img/homePageOn.png)
 <p align="center"><b>Figure 3:</b> Device in Power On State</p>
