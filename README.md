@@ -89,33 +89,19 @@ At the bottom of this Add New Patient form is the "Add Patient" button (See Figu
 
 ![alt text](/img/addPatientButton.png)
 <p align="center"><b>Figure 7:</b> Add Patient Button</p>
- 
-TODO Edit/View Page
+
+
+If on the Patient Page a user selects "View Details/Edit", the user will be taken to an "Edit Patient Info Page" (See Figure 8). Here, a user may view all of the stored patient information and edit these details. Similar to the "Add New Patient Page", this form is scrollable. To save the changes to the patient, select the "Update Patient" button at the bottom of the form. The user will be returned to the "Patient Page" once the "Update Patient" button is selected. 
+
+![alt text](/img/editPatient.png)
+<p align="center"><b>Figure 8:</b> Edit Patient Page</p>
 
 ### Patient Monitoring 
 
-Selecting a patient from the "Patient Page" displays the patient's vitals on the Home Screeen (See Figure TODO). This is the main feature of the patient monitoring system device - it shows all of the infomation of the patient that is entered in its database.
+Selecting a patient from the "Patient Page" displays the patient's vitals on the Home Screeen (See Figure 9). This is the main feature of the patient monitoring system device - it shows all of the infomation of the patient that is entered in its database.
 
 ![alt text](/img/patientInfo.png)
-<p align="center"><b>Figure TODO:</b> Patient Monitoring on the Home Screen</p>
-
-
-
-## Usage
-
-The user powers on the device by clicking the power button.  
-
-The user will then have to go to the patients page to add or select a patient for the device to monitor.
-
-Clicking the Add Patient button, a form will come up which will require the user to add the patient's informaiton to the database.  
-
-The user will then Select a user by clicking the Select button next to the patient's name
-
-The home page will now display the vital signs of the patient and the correct information for whichever patient is selected.
-
-In the patient page, the user can select also use the remove button to remove a patient from the database or the clear button to clear all patients from the database.
-
-Once done the user can toggle the power button off shutting off the device.
+<p align="center"><b>Figure 9:</b> Patient Monitoring on the Home Screen</p>
 
 ## Authors
 

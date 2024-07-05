@@ -1429,21 +1429,6 @@ class App extends React.Component {
 		else if (this.state.page === "Patient-Edit") {
 			return (
 				<div className="container bg-light" style={{ height: "1010px" }}>
-					<div className="row bg-primary">
-						<div className="col-sm-9"></div>
-						<div className="col-sm-3 text-end align-items">
-							<i className="fa fa-signal icon-bar"></i>
-							<i className="fa fa-plug icon-bar"></i>
-							<TimeComponent />
-							<img
-								src="img/bluetooth2.png"
-								alt="bluetooth logo"
-								width="20px"
-								height="auto"
-							/>
-							<span>95%</span>
-						</div>
-					</div>
 					<div className="row bg-info mb-3">
 						<div className="col-sm-12 text-center text-white">
 							<h1>Edit Patient Info</h1>
