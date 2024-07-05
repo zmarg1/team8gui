@@ -8,6 +8,7 @@ The purpose of this project is to design a graphical user interface for a patien
 
 ### Home Screen
 
+#### Power State
 Upon loading the project into the browser, the device is set to off as seen in Figure 1.
 
 ![alt text](/img/homePageOff.png)<p align="center"><b>Figure 1:</b> Device in the Power Off State</p>
@@ -28,6 +29,33 @@ When the user is finished with the device, press the power button once more. The
 
 ![alt text](/img/homePagePoweringDown.png)
 <p align="center"><b>Figure 4:</b> Device in Powering Down State</p>
+
+#### Home Screen Buttons
+
+The home screen GUI offers a large number of buttons for users. On the top left of the home screen is the power buttong. The first set of button on the top half of the device include the following (from left to right, in blue):
+
+- Alarms Page
+- Data Input/Output
+- Display Options
+- Camera Snapshot
+- Waveform Snapshot 
+- Event
+- Previous Activity
+- Home (this would have specialized features in a more completed GUI design)
+- Full Menu of Features
+
+Below this row of buttons is the wide light blue Patient button. 
+
+On the bottom of the home screen is another set of buttons.
+- Connect (green)
+- Disconnect (red)
+- Alarm Suspend (blue)
+- Alarm Silence (blue)
+- The Battery Gas Guage (blue with yellow shapes)
+
+If a user were to select the Battery Gas Gauge, then the power status LEDs below this set of buttons would light up indicating power status. Note this feature is not implemented, but would be in the final design.
+
+Finally, in the bottom right corner of the app is the Blood Pressure Reading Start button (yellow-orange). Selecting this would begin sampling the blood pressure of a patient.
 
 
 ### Patient Monitoring
