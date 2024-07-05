@@ -58,18 +58,14 @@ If a user were to select the Battery Gas Gauge, then the power status LEDs below
 Finally, in the bottom right corner of the app is the Blood Pressure Reading Start button (yellow-orange). Selecting this would begin sampling the blood pressure of a patient.
 
 
-### Patient Monitoring
+### Patient Database
 
-In the project, our databse is a local json which is managed as a state variable in the React component.  The database is initialized in index.js along with the patient object which defined all the information our patients have in the database.  The database stores the patients name, age, prescribed_drugs, incident_info and current vital signs.  A unique id is used to organize the patients in the database.  By clicking the patient icon on the home screen, you can enter the patients page.
+In the project, our databse is a local json which is managed as a state variable in the React component.  The database is initialized in index.js along with the patient object which defined all the information our patients have in the database.  The database stores the patients name, age, prescribed drugs, incident info and health reading (e.g. ECG, oxygen saturation, heart rate, blood pressure).  A unique id is used to organize the patients in the database.  By clicking the patient icon on the home screen, you can enter the patients page (See Figure 5).
 
 ![alt text](/img/patientPage.png)
+<p align="center"><b>Figure 5:</b> Patient Page</p>
 
-The Patients page shows the contents of the database including the patients and their information.  Patients can added through the patient page on the applicaiton by clikcing the add patient button and entering the required information which adds the patient to the database.  
-
-![alt text](/img/addPatient.png)
-
-The user can also Select a patient by clicking the Select Button on the patient page which will update the home screen with their information.  There are other buttons which are used to remove a patient from the database by clicking the Delete button and a Clear Database button which is used to clear the database.  
-
+The Patients page shows the contents of the database including the patients' id and names. Pressing the "Select" Button beside a patient row, will update the home screen with the selected patient's information. Users can press the "Back" button at the Bottom of the Page to return to the Home Screen. Users can also View and/or Edit a given patient's information by selecting the "View Details/Edit" Button on a patient row. Alternatively, users can also press "Delete" to remove a patient from the local storage. Patients can added to the device by selecting the "Add New Patients" button at the end of the Patient Table. and entering the required information which adds the patient to the database. Additionally, Users can delete the entire patient Database by pressing the "Clear Database" button at the bottom of the Patient table. 
 
 The functions are called by various buttons with onClick.
 Example of button adding the Patient to the database
@@ -84,17 +80,27 @@ Example of button adding the Patient to the database
 </button>
 ```
 
+Selecting the "Add New Patients" button will take you to the "Add New Patient page" (See Figure 6). This page allows users to enter all patient information. Users will need to use the scroll feature to see/add all of the relevant patient information. 
+
+![alt text](/img/addPatient.png)
+<p align="center"><b>Figure 6:</b> Add New Patient Page</p>
+
+At the bottom of this Add New Patient form is the "Add Patient" button (See Figure 7). If the add patient operation was successful, a success message will be returned. Otherwise, an error message will be displayed. For example, if a user tries to type an ID already assigned to another patient, then the add patient operation will fail. Users can select the "Back" Button to return the "Patient Page".
+
+![alt text](/img/addPatientButton.png)
+<p align="center"><b>Figure 7:</b> Add Patient Button</p>
+ 
+TODO Edit/View Page
+
+### Patient Monitoring 
+
+Selecting a patient from the "Patient Page" displays the patient's vitals on the Home Screeen (See Figure TODO). This is the main feature of the patient monitoring system device - it shows all of the infomation of the patient that is entered in its database.
+
 ![alt text](/img/patientInfo.png)
+<p align="center"><b>Figure TODO:</b> Patient Monitoring on the Home Screen</p>
 
-This is the display of the patient vitals when selecting a patient, this is the main feature of the patient monitoring system it shows the infomation of each and every patient that is entered in its database.
 
-## Installation
 
-```
-bash
-```
-
-## Usage
 
 ## Authors
 
@@ -102,6 +108,4 @@ bash
 - Gurnoor Hira
 - Zach Margulies
 - Aly Mulato
-
-## References
 
