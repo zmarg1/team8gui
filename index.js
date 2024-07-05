@@ -1856,6 +1856,7 @@ class App extends React.Component {
 							<button
 								onClick={() => {
 									this.setState({ page: "Patients" });
+									this.resetNewPatient();
 								}}
 								className="btn btn-primary btn-lg m-1"
 							>
