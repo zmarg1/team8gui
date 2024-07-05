@@ -617,7 +617,8 @@ class App extends React.Component {
 						</div>
 						<div className="col-sm-3">
 							<div className="side-wrapper">
-								<div className="side-container border border-success text-white text-center">
+								<div className="side-container border border-success text-white text-center"
+								style = {{width:"95%"}}>
 									{isPowerOn && <h1>{this.state.selectedPatient.heartLead} Lead</h1>}
 
 									<span>
@@ -626,10 +627,7 @@ class App extends React.Component {
 										)}
 									</span>
 								</div>
-								<div className="side-alert border border-success text-white text-center">
-									{isPowerOn && <h5 className="">100</h5>}
-									{isPowerOn && (<h5 className="">95</h5>)}
-								</div>
+								
 							</div>
 
 						</div>
@@ -883,7 +881,7 @@ class App extends React.Component {
 				<div className="container bg-light" style={{ height: "1000px" }}>
 					<div className="row bg-info mb-3">
 						<div className="col-sm-12 text-center text-white ">
-							<h1>Patient page</h1>
+							<h1>Patients</h1>
 						</div>
 					</div>
 					<div className="row">
