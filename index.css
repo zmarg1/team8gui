@@ -1,179 +1,200 @@
 .top-bar {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 .power-button {
-    border-radius: 2em;
-    font-size:2em;
-    flex: 1 1 auto; 
-    margin: 5px;  
+	border-radius: 2em;
+	font-size: 2em;
+	flex: 1 1 auto;
+	margin: 5px;
 }
 
-.waveform-container{
-    position: relative; 
-    background-color: black;
-    width: 100%;
-    height: 175px;
-    border-radius:5px;
+.waveform-container {
+	position: relative;
+	background-color: black;
+	width: 100%;
+	height: 175px;
+	border-radius: 5px;
 }
 
-.waveform-text{
-    position: absolute;
-    font-weight:bold;
-    color:white;
-    top: 5px;
-    left: 5px; 
-    font-size: 18px;
+.waveform-text {
+	position: absolute;
+	font-weight: bold;
+	color: white;
+	top: 5px;
+	left: 5px;
+	font-size: 18px;
 }
 
-.arrhythmia-text{
-    position: absolute;
-    font-weight:bold;
-    color:white;
-    bottom: 5px;
-    left: 5px; 
-    font-size: 16px;
+.arrhythmia-text {
+	position: absolute;
+	font-weight: bold;
+	color: white;
+	bottom: 5px;
+	left: 5px;
+	font-size: 16px;
 }
 
-.millivolt-text{
-    position: absolute;
-    font-weight:bold;
-    color:white;
-    bottom: 5px;
-    right: 30px; 
-    font-size: 12px;
+.millivolt-text {
+	position: absolute;
+	font-weight: bold;
+	color: white;
+	bottom: 5px;
+	right: 30px;
+	font-size: 12px;
 }
 
 .waveform-canvas {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
-.side-container{
-    background-color: black;
-    width: 70%;
-    height: 175px;
-    border-radius:5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* vertically center items */
-    align-items: center; /* horizontally center items */
+.side-container {
+	background-color: black;
+	width: 70%;
+	height: 175px;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	/* vertically center items */
+	align-items: center;
+	/* horizontally center items */
 }
 
-.side-alert{
-    background-color: black;
-    width: 25%;
-    height: 175px;
-    border-radius:5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* horizontally center items */
-    justify-content: space-between; /* Space items between top and bottom */
+.side-alert {
+	background-color: black;
+	width: 25%;
+	height: 175px;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* horizontally center items */
+	justify-content: space-between;
+	/* Space items between top and bottom */
 }
 
 .side-wrapper {
-   display: flex;
-   align-items: center;
-   width: 100%;
+	display: flex;
+	align-items: center;
+	width: 100%;
 }
 
-.temp-container{
-    background-color: black;
-    width: 75%;
-    height: 125px;
-    border-radius:5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* vertically center items */
-    align-items: center; /* horizontally center items */
-}
-.temp-alert{
-    background-color: black;
-    width: 25%;
-    height: 125px;
-    border-radius:5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* horizontally center items */
-    justify-content: space-between; /* Space items between top and bottom */
+.temp-container {
+	background-color: black;
+	width: 75%;
+	height: 125px;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	/* vertically center items */
+	align-items: center;
+	/* horizontally center items */
 }
 
-.pressure-container{
-    background-color: black;
-    width: 75%;
-    height: 75px;
-    border-radius:5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* vertically center items */
-    align-items: center; /* horizontally center items */
-}
-.pressure-alert{
-    background-color: black;
-    width: 25%;
-    height: 75px;
-    border-radius:5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* horizontally center items */
-    justify-content: space-between; /* Space items between top and bottom */
+.temp-alert {
+	background-color: black;
+	width: 25%;
+	height: 125px;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* horizontally center items */
+	justify-content: space-between;
+	/* Space items between top and bottom */
 }
 
-.patient-container{
-    background-color: black;
-    width: 100%;
-    height: 80%;
-    border-radius:5px;
+.pressure-container {
+	background-color: black;
+	width: 75%;
+	height: 75px;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	/* vertically center items */
+	align-items: center;
+	/* horizontally center items */
+}
+
+.pressure-alert {
+	background-color: black;
+	width: 25%;
+	height: 75px;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* horizontally center items */
+	justify-content: space-between;
+	/* Space items between top and bottom */
+}
+
+.patient-container {
+	background-color: black;
+	width: 100%;
+	height: 80%;
+	border-radius: 5px;
 }
 
 .icon-bar {
-    font-size: 1em; 
-    vertical-align: middle;
-    margin-right: 5px;
-    color: black; 
+	font-size: 1em;
+	vertical-align: middle;
+	margin-right: 5px;
+	color: black;
 }
 
 .top-buttons {
-    font-size:2em;
-    flex: 1 1 auto; 
-    margin: 5px; 
+	font-size: 2em;
+	flex: 1 1 auto;
+	margin: 5px;
 }
 
 .bottom-buttons {
-    flex: 1 1 auto; /* Allow buttons to grow and shrink equally */
-    margin: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%; /* Set height to fill the wrapper */
-    min-width: 0; /* Allow buttons to shrink below their content width if needed */
-    font-size:2em;
+	flex: 1 1 auto;
+	/* Allow buttons to grow and shrink equally */
+	margin: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	/* Set height to fill the wrapper */
+	min-width: 0;
+	/* Allow buttons to shrink below their content width if needed */
+	font-size: 2em;
 }
 
 .button-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%; 
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
 }
 
 .button-container {
-    display: flex;
-    flex-wrap: wrap;    
-    justify-content: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .temp-wrapper {
-    justify-content: space-between; /* Space items between top and bottom */
-    flex-direction: column;
-    align-items: center; /* horizontally center items */
-    justify-content: space-between; /* Space items between top and bottom */
+	justify-content: space-between;
+	/* Space items between top and bottom */
+	flex-direction: column;
+	align-items: center;
+	/* horizontally center items */
+	justify-content: space-between;
+	/* Space items between top and bottom */
 }
 
 .start-bp-container {
-    display: flex;
-    justify-content: center;
-    align-items: center; /* horizontally center items */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* horizontally center items */
 }
