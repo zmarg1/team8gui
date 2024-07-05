@@ -565,7 +565,7 @@ class App extends React.Component {
 						</div>
 						<div className="col-sm-3">
 							<div className="side-wrapper">
-								<div className="side-container border border-success text-white text-center m-1">
+								<div className="side-container border border-success text-white text-center">
 									{isPowerOn && <h2>{this.state.selectedPatient.heartRate}</h2>}
 									{isPowerOn && <h3>HR BPM</h3>}
 									{isPowerOn && (

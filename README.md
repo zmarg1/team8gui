@@ -4,7 +4,33 @@ Prototype of a graphical user interface for a patient monitoring device based on
 
 ## Overview
 
-### Patient Database
+The purpose of this project is to design a graphical user interface for a patient monitoring device. The functionality and UI is based off of the [TempusPro device](https://www.documents.philips.com/assets/Instruction%20for%20Use/20210913/f810edd239df41c19c96ada200c9eb6d.pdf). The current design offers users the ability to simulate a patient monitoring event that would be encountered in a real-world use of the device. Specifically, users can access the patient database stored locally on the device to show the health data (e.g. ECG readings, heart rate, blood pressure, etc.). Additionally, users can add new patients, edit current patients, and delete patients from the local storage. 
+
+### Home Screen
+
+Upon loading the project into the browser, the device is set to off as seen in Figure 1.
+
+![alt text](/img/homePageOff.png)<p align="center"><b>Figure 1:</b> Device in the Power Off State</p>
+
+Users cannot see any patient data yet, only the buttons on the screen. None of the buttons are functional in the off state.
+
+Clicking the Power Button turns the device power on. The device takes three seconds to power up. During this time, the device is not yet functional(See Figure 2). The power button changes from red to blue and the top bar indicates to the user that the "Device is Powering Up".
+
+![alt text](/img/homePagePoweringUp.png)
+<p align="center"><b>Figure 2:</b> Device in the Powering Up State</p>
+
+After three seconds, the device is powered on. The power button changes from blue to green and the device is now fully functionally (See Figure 3). Users can hover over any button or icon to see what the intended purpose. Additionally, users can select the large, wide light blue "Patients Button" to access the Patient Page. See the following section on Patients to learn more.
+
+![alt text](/img/homePageOn.png)
+<p align="center"><b>Figure 3:</b> Device in Power On State</p>
+
+When the user is finished with the device, press the power button once more. The device begin the powering down operation. The green power button will turn orange (See Figure 4). After three seconds the device will be powered down and the power button will appear red again.
+
+![alt text](/img/homePagePoweringDown.png)
+<p align="center"><b>Figure 4:</b> Device in Powering Down State</p>
+
+
+### Patient Monitoring
 
 In the project, our databse is a local json which is managed as a state variable in the React component.  The database is initialized in index.js along with the patient object which defined all the information our patients have in the database.  The database stores the patients name, age, prescribed_drugs, incident_info and current vital signs.  A unique id is used to organize the patients in the database.  By clicking the patient icon on the home screen, you can enter the patients page.
 
