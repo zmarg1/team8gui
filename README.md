@@ -60,11 +60,11 @@ Finally, in the bottom right corner of the app is the Blood Pressure Reading Sta
 
 ### Patient Monitoring
 
-In the project, our databse is a local json which is managed as a state variable in the React component.  The database is initialized in index.js along with the patient object which defined all the information our patients have in the database.  The database stores the patients name, age, prescribed_drugs, incident_info and current vital signs.  A unique id is used to organize the patients in the database.  By clicking the patient icon on the home screen, you can enter the patients page.
+In the project, our database is a local json which is managed as a state variable in the React component.  The database is initialized in index.js along with the patient object which defined all the information our patients have in the database.  The database stores the patients name, age, prescribed_drugs, incident_info and current vital signs.  A unique id is used to organize the patients in the database.  By clicking the patient icon on the home screen, you can enter the patients page.
 
 ![alt text](/img/patientPage.png)
 
-The Patients page shows the contents of the database including the patients and their information.  Patients can added through the patient page on the applicaiton by clikcing the add patient button and entering the required information which adds the patient to the database.  
+The Patients page shows the contents of the database including the patients and their information.  Patients can added through the patient page on the applicaiton by clikcing the add patient button and entering the required information which adds the patient to the database.  The user can also edit the information of a patient by clicking the edit button on the Patients page.  
 
 ![alt text](/img/addPatient.png)
 
@@ -95,6 +95,20 @@ bash
 ```
 
 ## Usage
+
+The user powers on the device by clicking the power button.  
+
+The user will then have to go to the patients page to add or select a patient for the device to monitor.
+
+Clicking the Add Patient button, a form will come up which will require the user to add the patient's informaiton to the database.  
+
+The user will then Select a user by clicking the Select button next to the patient's name
+
+The home page will now display the vital signs of the patient and the correct information for whichever patient is selected.
+
+In the patient page, the user can select also use the remove button to remove a patient from the database or the clear button to clear all patients from the database.
+
+Once done the user can toggle the power button off shutting off the device.
 
 ## Authors
 
