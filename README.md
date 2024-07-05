@@ -101,6 +101,21 @@ Selecting a patient from the "Patient Page" displays the patient's vitals on the
 
 
 
+## Usage
+
+The user powers on the device by clicking the power button.  
+
+The user will then have to go to the patients page to add or select a patient for the device to monitor.
+
+Clicking the Add Patient button, a form will come up which will require the user to add the patient's informaiton to the database.  
+
+The user will then Select a user by clicking the Select button next to the patient's name
+
+The home page will now display the vital signs of the patient and the correct information for whichever patient is selected.
+
+In the patient page, the user can select also use the remove button to remove a patient from the database or the clear button to clear all patients from the database.
+
+Once done the user can toggle the power button off shutting off the device.
 
 ## Authors
 
