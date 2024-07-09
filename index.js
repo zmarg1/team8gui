@@ -6,6 +6,7 @@ class App extends React.Component {
 			power: 0,
 			isPoweringUp: false,
 			isPoweringDown: false,
+			searchTerm: "",
 			patientDB: [
 				{
 					id: 0,
@@ -235,6 +236,10 @@ class App extends React.Component {
 		}));
 	};
 
+	handleSearchChange = (e) => {
+		this.setState({ searchTerm: e.target.value });
+	};
+
 	// Function to update the power in the app
 	handlePowerChange = (power) => {
 		this.setState({ power: power });
@@ -356,10 +361,11 @@ class App extends React.Component {
 
 
 	render() {
-		// Create a filtered db to exclude the null patient
+		// Create a filtered db to exclude the null patient and filters by name
 		const filteredPatients = this.state.patientDB.filter(
-			(patient) => patient.id !== 0
+			(patient) => patient.id !== 0 && patient.name.toLowerCase().includes(this.state.searchTerm.toLowerCase())
 		);
+
 		const isPatientSelected = this.state.selectedPatient.id !== 0;
 		const isPowerOn = this.state.power === 1;
 		const isPoweringUp = this.state.isPoweringUp;
@@ -883,6 +889,15 @@ class App extends React.Component {
 						<div className="col-sm-12 text-center text-white ">
 							<h1>Patients</h1>
 						</div>
+					</div>
+					<div className="col-sm-12">
+						<input
+						type="text"
+						className="form-control"
+						placeholder="Search by name"
+						value={this.state.searchTerm}
+						onChange={this.handleSearchChange}
+						/>
 					</div>
 					<div className="row">
 						<div className="col-sm-12">
