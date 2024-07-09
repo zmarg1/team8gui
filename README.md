@@ -1,6 +1,6 @@
 # Team 8 Patient Monitoring Device
 
-Prototype of a graphical user interface (GUI) for a patient monitoring device based on the Tempus Pro unit. 
+Prototype of a graphical user interface (GUI) for a patient monitoring device based on the Tempus Pro unit. This interface was created as a class project for UMBC's CMSC-437 Graphical User Interface Programming Summer 2024 course taught by Professor Donyaee.
 
 ## Overview
 
